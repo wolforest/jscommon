@@ -128,3 +128,16 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Additional entries from colleague's message
+node_modules
+.DS_Store
+dist
+coverage
+*.local
+.env
+.cache
+.temp
+.idea
+.vscode
+*.log

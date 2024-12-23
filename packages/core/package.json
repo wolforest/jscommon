@@ -1,0 +1,51 @@
+{
+  "name": "@wolforest/jscommon",
+  "version": "1.0.0",
+  "description": "Frontend utility library facade",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21",
+    "dayjs": "^1.11.10",
+    "ahooks": "^3.7.0",
+    "ramda": "^0.29.0",
+    "axios": "^1.6.0",
+    "@vueuse/core": "^10.0.0",
+    "qs": "^6.11.0",
+    "pinyin-pro": "^3.0.0",
+    "big.js": "^6.2.0",
+    "classnames": "^2.3.0",
+    "query-string": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.0",
+    "@types/ramda": "^0.29.0",
+    "@types/qs": "^6.9.0",
+    "@types/big.js": "^6.2.0",
+    "vite-plugin-dts": "^3.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "vue": ">=3.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

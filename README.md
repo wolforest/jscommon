@@ -1,5 +1,4 @@
 # jscommon
-JavaScript 常用的工具库 
+simple utils facade for javascripThe simple utils Facade for javascript/typescript，the only utils you need for frontEnd application
 
-## 技术收敛
- ![技术收敛](./design.png)
+ ![](./design.png)

@@ -28,7 +28,9 @@ import {
   unescape,
   upperCase,
   upperFirst,
-  words
+  words,
+  isString,
+  toString
 } from 'lodash-es';
 
 export class StringUtil {
@@ -408,4 +410,31 @@ export class StringUtil {
    * ```
    */
   static words = words;
+
+  /**
+   * 检查值是否是字符串
+   * @param value - 要检查的值
+   * @returns 如果值是字符串返回true，否则返回false
+   * @example
+   * ```ts
+   * StringUtil.isString('abc') // => true
+   * StringUtil.isString(1) // => false
+   * StringUtil.isString(null) // => false
+   * ```
+   */
+  static isString = isString;
+
+  /**
+   * 将值转换为字符串
+   * @param value - 要转换的值
+   * @returns 转换后的字符串
+   * @example
+   * ```ts
+   * StringUtil.toString(null) // => ''
+   * StringUtil.toString(-0) // => '-0'
+   * StringUtil.toString([1, 2, 3]) // => '1,2,3'
+   * StringUtil.toString({ 'a': 1 }) // => '[object Object]'
+   * ```
+   */
+  static toString = toString;
 } 

@@ -171,4 +171,139 @@ describe('ObjectUtil', () => {
         .toEqual({ a: [{ b: 2, c: 3 }, { d: 4, e: 5 }] });
     });
   });
+
+  describe('clone', () => {
+    it('should create a shallow clone', () => {
+      const objects = [{ a: 1 }, { b: 2 }];
+      const shallow = ObjectUtil.clone(objects);
+      expect(shallow).toEqual(objects);
+      expect(shallow[0]).toBe(objects[0]); // 浅克隆,引用相同
+    });
+
+    it('should clone primitives', () => {
+      expect(ObjectUtil.clone(1)).toBe(1);
+      expect(ObjectUtil.clone('abc')).toBe('abc');
+      expect(ObjectUtil.clone(true)).toBe(true);
+    });
+  });
+
+  describe('cloneDeep', () => {
+    it('should create a deep clone', () => {
+      const objects = [{ a: 1 }, { b: 2 }];
+      const deep = ObjectUtil.cloneDeep(objects);
+      expect(deep).toEqual(objects);
+      expect(deep[0]).not.toBe(objects[0]); // 深克隆,引用不同
+    });
+
+    it('should handle nested objects', () => {
+      const object = { a: [{ b: { c: 1 } }] };
+      const clone = ObjectUtil.cloneDeep(object);
+      expect(clone).toEqual(object);
+      expect(clone.a[0]).not.toBe(object.a[0]);
+    });
+  });
+
+  describe('conformsTo', () => {
+    it('should check if object conforms to source', () => {
+      const object = { a: 1, b: 2 };
+      expect(ObjectUtil.conformsTo(object, {
+        b: (n) => n > 1
+      })).toBe(true);
+
+      expect(ObjectUtil.conformsTo(object, {
+        b: (n) => n > 2
+      })).toBe(false);
+    });
+  });
+
+  describe('isEqual', () => {
+    it('should perform deep comparison', () => {
+      expect(ObjectUtil.isEqual({ a: 1 }, { a: 1 })).toBe(true);
+      expect(ObjectUtil.isEqual({ a: 1 }, { a: 2 })).toBe(false);
+      expect(ObjectUtil.isEqual([1, 2, 3], [1, 2, 3])).toBe(true);
+    });
+
+    it('should handle nested objects', () => {
+      const object1 = { a: { b: 1 } };
+      const object2 = { a: { b: 1 } };
+      const object3 = { a: { b: 2 } };
+      expect(ObjectUtil.isEqual(object1, object2)).toBe(true);
+      expect(ObjectUtil.isEqual(object1, object3)).toBe(false);
+    });
+  });
+
+  describe('isEqualWith', () => {
+    it('should support custom comparator', () => {
+      const customizer = (value: any, other: any) => {
+        if (typeof value === 'string' && typeof other === 'string') {
+          return value.toLowerCase() === other.toLowerCase();
+        }
+      };
+      expect(ObjectUtil.isEqualWith({ a: 'Hello' }, { a: 'hello' }, customizer)).toBe(true);
+    });
+  });
+
+  describe('isMatch', () => {
+    it('should check if object matches source', () => {
+      const object = { a: 1, b: 2, c: 3 };
+      expect(ObjectUtil.isMatch(object, { b: 2 })).toBe(true);
+      expect(ObjectUtil.isMatch(object, { b: 1 })).toBe(false);
+    });
+  });
+
+  describe('isObject', () => {
+    it('should identify objects', () => {
+      expect(ObjectUtil.isObject({})).toBe(true);
+      expect(ObjectUtil.isObject([1, 2, 3])).toBe(true);
+      expect(ObjectUtil.isObject(() => {})).toBe(true);
+      expect(ObjectUtil.isObject(null)).toBe(false);
+    });
+  });
+
+  describe('isObjectLike', () => {
+    it('should identify object-like values', () => {
+      expect(ObjectUtil.isObjectLike({})).toBe(true);
+      expect(ObjectUtil.isObjectLike([1, 2, 3])).toBe(true);
+      expect(ObjectUtil.isObjectLike(() => {})).toBe(false);
+      expect(ObjectUtil.isObjectLike(null)).toBe(false);
+    });
+  });
+
+  describe('isPlainObject', () => {
+    it('should identify plain objects', () => {
+      function Foo() {
+        this.a = 1;
+      }
+      expect(ObjectUtil.isPlainObject({})).toBe(true);
+      expect(ObjectUtil.isPlainObject({ a: 1 })).toBe(true);
+      expect(ObjectUtil.isPlainObject(new Foo())).toBe(false);
+      expect(ObjectUtil.isPlainObject([1, 2, 3])).toBe(false);
+    });
+  });
+
+  describe('toPlainObject', () => {
+    it('should convert value to plain object', () => {
+      function Foo() {
+        this.b = 2;
+      }
+      Foo.prototype.c = 3;
+      expect(ObjectUtil.toPlainObject(new Foo())).toEqual({ b: 2, c: 3 });
+    });
+  });
+
+  describe('isEmpty', () => {
+    it('should check if object is empty', () => {
+      expect(ObjectUtil.isEmpty({})).toBe(true);
+      expect(ObjectUtil.isEmpty({ a: 1 })).toBe(false);
+      expect(ObjectUtil.isEmpty([])).toBe(true);
+      expect(ObjectUtil.isEmpty([1, 2])).toBe(false);
+    });
+
+    it('should handle non-object values', () => {
+      expect(ObjectUtil.isEmpty(null)).toBe(true);
+      expect(ObjectUtil.isEmpty('')).toBe(true);
+      expect(ObjectUtil.isEmpty(new Map())).toBe(true);
+      expect(ObjectUtil.isEmpty(new Set())).toBe(true);
+    });
+  });
 });

@@ -5,13 +5,14 @@ import { isSymbol } from 'lodash-es';
  */
 export class SymbolUtil {
   /**
-   * 检查值是否为 Symbol 类型
+   * 检查值是否是 Symbol
    * @param value - 要检查的值
-   * @returns 是否为 Symbol 类型
+   * @returns 如果值是 Symbol 返回 true，否则返回 false
    * @example
    * ```ts
-   * SymbolUtil.isSymbol(Symbol('test')) // => true
-   * SymbolUtil.isSymbol('test') // => false
+   * SymbolUtil.isSymbol(Symbol()) // => true
+   * SymbolUtil.isSymbol(Symbol.iterator) // => true
+   * SymbolUtil.isSymbol('abc') // => false
    * ```
    */
   static isSymbol = isSymbol;

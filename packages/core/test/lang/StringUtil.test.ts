@@ -240,4 +240,54 @@ describe('StringUtil', () => {
       expect(StringUtil.pad('abc', -1)).toBe('abc');
     });
   });
+
+  describe('isString', () => {
+    it('should identify strings', () => {
+      expect(StringUtil.isString('abc')).toBe(true);
+      expect(StringUtil.isString(String('abc'))).toBe(true);
+      expect(StringUtil.isString(new String('abc'))).toBe(true);
+      expect(StringUtil.isString('')).toBe(true);
+    });
+
+    it('should return false for non-strings', () => {
+      expect(StringUtil.isString(1)).toBe(false);
+      expect(StringUtil.isString(true)).toBe(false);
+      expect(StringUtil.isString(null)).toBe(false);
+      expect(StringUtil.isString(undefined)).toBe(false);
+      expect(StringUtil.isString({})).toBe(false);
+      expect(StringUtil.isString([])).toBe(false);
+      expect(StringUtil.isString(() => {})).toBe(false);
+      expect(StringUtil.isString(/abc/)).toBe(false);
+    });
+  });
+
+  describe('toString', () => {
+    it('should convert values to strings', () => {
+      expect(StringUtil.toString('abc')).toBe('abc');
+      expect(StringUtil.toString(-0)).toBe('-0');
+      expect(StringUtil.toString([1, 2, 3])).toBe('1,2,3');
+      expect(StringUtil.toString({ 'a': 1 })).toBe('[object Object]');
+    });
+
+    it('should handle special values', () => {
+      expect(StringUtil.toString(null)).toBe('');
+      expect(StringUtil.toString(undefined)).toBe('');
+      expect(StringUtil.toString('')).toBe('');
+      expect(StringUtil.toString(0)).toBe('0');
+      expect(StringUtil.toString(false)).toBe('false');
+      expect(StringUtil.toString(true)).toBe('true');
+      expect(StringUtil.toString(NaN)).toBe('NaN');
+      expect(StringUtil.toString(Infinity)).toBe('Infinity');
+      expect(StringUtil.toString(-Infinity)).toBe('-Infinity');
+    });
+
+    it('should handle arrays and objects', () => {
+      expect(StringUtil.toString([])).toBe('');
+      expect(StringUtil.toString([1])).toBe('1');
+      expect(StringUtil.toString([null, undefined, []])).toBe('null,undefined,');
+      expect(StringUtil.toString(new Date(2024, 0, 1))).toMatch(/2024/);
+      expect(StringUtil.toString(/abc/)).toBe('/abc/');
+      expect(StringUtil.toString(Symbol('test'))).toBe('Symbol(test)');
+    });
+  });
 }); 

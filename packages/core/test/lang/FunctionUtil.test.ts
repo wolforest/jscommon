@@ -217,4 +217,48 @@ describe('FunctionUtil', () => {
       expect(fn()).toBe('wrapped hello');
     });
   });
+
+  // 新增类型检查测试
+  describe('type checking methods', () => {
+    describe('isFunction', () => {
+      it('should identify functions', () => {
+        expect(FunctionUtil.isFunction(function() {})).toBe(true);
+        expect(FunctionUtil.isFunction(() => {})).toBe(true);
+        expect(FunctionUtil.isFunction(class {})).toBe(true);
+        expect(FunctionUtil.isFunction(Function)).toBe(true);
+      });
+
+      it('should return false for non-functions', () => {
+        expect(FunctionUtil.isFunction({})).toBe(false);
+        expect(FunctionUtil.isFunction([])).toBe(false);
+        expect(FunctionUtil.isFunction(/abc/)).toBe(false);
+        expect(FunctionUtil.isFunction(null)).toBe(false);
+        expect(FunctionUtil.isFunction(undefined)).toBe(false);
+        expect(FunctionUtil.isFunction(42)).toBe(false);
+        expect(FunctionUtil.isFunction('function')).toBe(false);
+      });
+    });
+
+    describe('isNative', () => {
+      it('should identify native functions', () => {
+        expect(FunctionUtil.isNative(Array.prototype.push)).toBe(true);
+        expect(FunctionUtil.isNative(Date.now)).toBe(true);
+        expect(FunctionUtil.isNative(String.fromCharCode)).toBe(true);
+      });
+
+      it('should return false for non-native functions', () => {
+        expect(FunctionUtil.isNative(function() {})).toBe(false);
+        expect(FunctionUtil.isNative(() => {})).toBe(false);
+        expect(FunctionUtil.isNative(function custom() {})).toBe(false);
+      });
+
+      it('should return false for non-functions', () => {
+        expect(FunctionUtil.isNative({})).toBe(false);
+        expect(FunctionUtil.isNative(null)).toBe(false);
+        expect(FunctionUtil.isNative(undefined)).toBe(false);
+        expect(FunctionUtil.isNative(42)).toBe(false);
+        expect(FunctionUtil.isNative('native')).toBe(false);
+      });
+    });
+  });
 }); 

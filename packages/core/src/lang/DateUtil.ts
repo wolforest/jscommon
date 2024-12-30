@@ -4,6 +4,7 @@ import timezone from 'dayjs/plugin/timezone';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
 import isBetween from 'dayjs/plugin/isBetween';
+import { isDate } from 'lodash-es';
 
 // 扩展 dayjs 插件
 dayjs.extend(utc);
@@ -545,4 +546,17 @@ export class DateUtil {
   static tz(input: ConfigType, timezone?: string, keepLocalTime?: boolean): Dayjs {
     return dayjs(input).tz(timezone, keepLocalTime);
   }
+
+  /**
+   * 检查值是否是 Date 对象
+   * @param value - 要检查的值
+   * @returns 如果值是 Date 对象返回 true，否则返回 false
+   * @example
+   * ```ts
+   * DateUtil.isDate(new Date) // => true
+   * DateUtil.isDate('Mon April 23 2012') // => false
+   * DateUtil.isDate(1650672000000) // => false
+   * ```
+   */
+  static isDate = isDate;
 }

@@ -62,7 +62,14 @@ import {
   zip,
   zipObject,
   zipObjectDeep,
-  zipWith
+  zipWith,
+  castArray,
+  isArray,
+  isArrayBuffer,
+  isArrayLike,
+  isArrayLikeObject,
+  isEmpty,
+  toArray
 } from 'lodash-es';
 
 export class ArrayUtil {
@@ -605,7 +612,7 @@ export class ArrayUtil {
   static tail = tail;
 
   /**
-   * 创建一个数组切片，从数组开头提取 n ��元素
+   * 创建一个数组切片，从数组开头提取 n 个元素
    * @param array - 要查询的数组
    * @param n - 提取的元素个数
    * @returns 提取的元素数组
@@ -840,4 +847,96 @@ export class ArrayUtil {
    * ```
    */
   static zipWith = zipWith;
-}
+
+  /**
+   * 将值转换为数组
+   * @param value - 要转换的值
+   * @returns 转换后的数组
+   * @example
+   * ```ts
+   * ArrayUtil.castArray(1) // => [1]
+   * ArrayUtil.castArray([1, 2, 3]) // => [1, 2, 3]
+   * ArrayUtil.castArray({ a: 1 }) // => [{ a: 1 }]
+   * ArrayUtil.castArray('abc') // => ['abc']
+   * ```
+   */
+  static castArray = castArray;
+
+  /**
+   * 检查值是否是 Array 对象
+   * @param value - 要检查的值
+   * @returns 如果值是数组返回 true，否则返回 false
+   * @example
+   * ```ts
+   * ArrayUtil.isArray([1, 2, 3]) // => true
+   * ArrayUtil.isArray('abc') // => false
+   * ArrayUtil.isArray(document.body.children) // => false
+   * ```
+   */
+  static isArray = isArray;
+
+  /**
+   * 检查值是否是 ArrayBuffer 对象
+   * @param value - 要检查的值
+   * @returns 如果值是 ArrayBuffer 返回 true，否则返回 false
+   * @example
+   * ```ts
+   * ArrayUtil.isArrayBuffer(new ArrayBuffer(2)) // => true
+   * ArrayUtil.isArrayBuffer(new Array(2)) // => false
+   * ```
+   */
+  static isArrayBuffer = isArrayBuffer;
+
+  /**
+   * 检查值是否是类数组
+   * @param value - 要检查的值
+   * @returns 如果值是类数组返回 true，否则返回 false
+   * @example
+   * ```ts
+   * ArrayUtil.isArrayLike([1, 2, 3]) // => true
+   * ArrayUtil.isArrayLike(document.body.children) // => true
+   * ArrayUtil.isArrayLike('abc') // => true
+   * ArrayUtil.isArrayLike(() => {}) // => false
+   * ```
+   */
+  static isArrayLike = isArrayLike;
+
+  /**
+   * 检查值是否是类数组对象
+   * @param value - 要检查的值
+   * @returns 如果值是类数组对象返回 true，否则返回 false
+   * @example
+   * ```ts
+   * ArrayUtil.isArrayLikeObject([1, 2, 3]) // => true
+   * ArrayUtil.isArrayLikeObject(document.body.children) // => true
+   * ArrayUtil.isArrayLikeObject('abc') // => false
+   * ```
+   */
+  static isArrayLikeObject = isArrayLikeObject;
+
+  /**
+   * 检查数组是否为空
+   * @param value - 要检查的数组
+   * @returns 如果数组为空返回 true，否则返回 false
+   * @example
+   * ```ts
+   * ArrayUtil.isEmpty([]) // => true
+   * ArrayUtil.isEmpty([1, 2, 3]) // => false
+   * ```
+   */
+  static isEmpty = isEmpty;
+
+  /**
+   * 转换值为数组
+   * @param value - 要转换的值
+   * @returns 转换后的数组
+   * @example
+   * ```ts
+   * ArrayUtil.toArray({ a: 1, b: 2 }) // => [1, 2]
+   * ArrayUtil.toArray('abc') // => ['a', 'b', 'c']
+   * ArrayUtil.toArray(1) // => []
+   * ArrayUtil.toArray(null) // => []
+   * ```
+   */
+  static toArray = toArray;
+} 

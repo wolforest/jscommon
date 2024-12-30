@@ -41,7 +41,21 @@ import {
   update,
   updateWith,
   values,
-  valuesIn
+  valuesIn,
+  clone,
+  cloneDeep,
+  cloneDeepWith,
+  cloneWith,
+  conformsTo,
+  isEqual,
+  isEqualWith,
+  isMatch,
+  isMatchWith,
+  isObject,
+  isObjectLike,
+  isPlainObject,
+  toPlainObject,
+  isEmpty
 } from 'lodash-es';
 
 export class ObjectUtil {
@@ -563,4 +577,128 @@ export class ObjectUtil {
    */
   static valuesIn = valuesIn;
 
+  /**
+   * 创建一个对象的浅克隆
+   * @param value - 要克隆的值
+   * @returns 克隆后的值
+   * @example
+   * ```ts
+   * const objects = [{ 'a': 1 }, { 'b': 2 }];
+   * const shallow = ObjectUtil.clone(objects);
+   * console.log(shallow[0] === objects[0]); // => true
+   * ```
+   */
+  static clone = clone;
+
+  /**
+   * 创建一个对象的深克隆
+   * @param value - 要克隆的值
+   * @returns 克隆后的值
+   * @example
+   * ```ts
+   * const objects = [{ 'a': 1 }, { 'b': 2 }];
+   * const deep = ObjectUtil.cloneDeep(objects);
+   * console.log(deep[0] === objects[0]); // => false
+   * ```
+   */
+  static cloneDeep = cloneDeep;
+
+  /**
+   * 类似于 cloneDeep，但支持自定义克隆函数
+   * @param value - 要克隆的值
+   * @param customizer - 自定义克隆函数
+   * @returns 克隆后的值
+   */
+  static cloneDeepWith = cloneDeepWith;
+
+  /**
+   * 类似于 clone，但支持自定义克隆函数
+   * @param value - 要克隆的值
+   * @param customizer - 自定义克隆函数
+   * @returns 克隆后的值
+   */
+  static cloneWith = cloneWith;
+
+  /**
+   * 检查对象是否符合源对象的属性值
+   * @param object - 要检查的对象
+   * @param source - 包含属性谓词的对象
+   * @returns 如果对象符合，返回 true，否则返回 false
+   */
+  static conformsTo = conformsTo;
+
+  /**
+   * 执行深比较来确定两个值是否相等
+   * @param value - 要比较的值
+   * @param other - 另一个要比较的值
+   * @returns 如果两个值相等，返回 true，否则返回 false
+   */
+  static isEqual = isEqual;
+
+  /**
+   * 类似于 isEqual，但支持自定义比较函数
+   * @param value - 要比较的值
+   * @param other - 另一个要比较的值
+   * @param customizer - 自定义比较函数
+   * @returns 如果两个值相等，返回 true，否则返回 false
+   */
+  static isEqualWith = isEqualWith;
+
+  /**
+   * 检查对象是否匹配源对象的属性值
+   * @param object - 要检查的对象
+   * @param source - 源对象
+   * @returns 如果对象包含等价的属性值，返回 true，否则返回 false
+   */
+  static isMatch = isMatch;
+
+  /**
+   * 类似于 isMatch，但支持自定义比较函数
+   * @param object - 要检查的对象
+   * @param source - 源对象
+   * @param customizer - 自定义比较函数
+   * @returns 如果对象匹配，返回 true，否则返回 false
+   */
+  static isMatchWith = isMatchWith;
+
+  /**
+   * 检查值是否是普通对象
+   * @param value - 要检查的值
+   * @returns 如果值是普通对象，返回 true，否则返回 false
+   */
+  static isObject = isObject;
+
+  /**
+   * 检查值是否是类对象
+   * @param value - 要检查的值
+   * @returns 如果值是类对象，返回 true，否则返回 false
+   */
+  static isObjectLike = isObjectLike;
+
+  /**
+   * 检查值是否是普通对象
+   * @param value - 要检查的值
+   * @returns 如果值是普通对象，返回 true，否则返回 false
+   */
+  static isPlainObject = isPlainObject;
+
+  /**
+   * 将值转换为普通对象
+   * @param value - 要转换的值
+   * @returns 转换后的普通对象
+   */
+  static toPlainObject = toPlainObject;
+
+  /**
+   * 检查值是否为空
+   * @param value - 要检查的值
+   * @returns 如果值为空返回 true，否则返回 false
+   * @example
+   * ```ts
+   * ObjectUtil.isEmpty({ 'a': 1 }) // => false
+   * ObjectUtil.isEmpty([]) // => true
+   * ObjectUtil.isEmpty({}) // => true
+   * ```
+   */
+  static isEmpty = isEmpty;
 }

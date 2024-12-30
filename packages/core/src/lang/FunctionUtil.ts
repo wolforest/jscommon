@@ -10,6 +10,8 @@ import {
   defer,
   delay,
   flip,
+  isFunction,
+  isNative,
   memoize,
   negate,
   once,
@@ -352,4 +354,30 @@ export class FunctionUtil {
    * ```
    */
   static wrap = wrap;
+
+  /**
+   * 检查值是否是函数
+   * @param value - 要检查的值
+   * @returns 如果值是函数返回true，否则返回false
+   * @example
+   * ```ts
+   * FunctionUtil.isFunction(function() {}) // => true
+   * FunctionUtil.isFunction(() => {}) // => true
+   * FunctionUtil.isFunction(class {}) // => true
+   * FunctionUtil.isFunction(/abc/) // => false
+   * ```
+   */
+  static isFunction = isFunction;
+
+  /**
+   * 检查值是否是原生函数
+   * @param value - 要检查的值
+   * @returns 如果值是原生函数返回true，否则返回false
+   * @example
+   * ```ts
+   * FunctionUtil.isNative(Array.prototype.push) // => true
+   * FunctionUtil.isNative(function() {}) // => false
+   * ```
+   */
+  static isNative = isNative;
 }

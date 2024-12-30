@@ -185,4 +185,21 @@ describe('DateUtil', () => {
       expect(value).toBeGreaterThan(0);
     });
   });
+
+  describe('isDate', () => {
+    it('should identify Date objects', () => {
+      expect(DateUtil.isDate(new Date())).toBe(true);
+      expect(DateUtil.isDate(new Date('2024-01-01'))).toBe(true);
+      expect(DateUtil.isDate(Date.now())).toBe(false);
+    });
+
+    it('should return false for non-Date values', () => {
+      expect(DateUtil.isDate('2024-01-01')).toBe(false);
+      expect(DateUtil.isDate(1650672000000)).toBe(false);
+      expect(DateUtil.isDate(null)).toBe(false);
+      expect(DateUtil.isDate(undefined)).toBe(false);
+      expect(DateUtil.isDate({})).toBe(false);
+      expect(DateUtil.isDate({ getTime: () => 1234 })).toBe(false);
+    });
+  });
 });

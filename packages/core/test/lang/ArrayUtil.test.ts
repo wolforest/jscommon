@@ -359,4 +359,135 @@ describe('ArrayUtil', () => {
         .toEqual([111, 22]);
     });
   });
+
+  describe('castArray', () => {
+    it('should wrap non-array values in array', () => {
+      expect(ArrayUtil.castArray(1)).toEqual([1]);
+      expect(ArrayUtil.castArray({ a: 1 })).toEqual([{ a: 1 }]);
+      expect(ArrayUtil.castArray('abc')).toEqual(['abc']);
+      expect(ArrayUtil.castArray(null)).toEqual([null]);
+      expect(ArrayUtil.castArray(undefined)).toEqual([undefined]);
+    });
+
+    it('should return array values directly', () => {
+      const arr = [1, 2, 3];
+      expect(ArrayUtil.castArray(arr)).toBe(arr);
+    });
+
+    it('should return array with undefined for no arguments', () => {
+      expect(ArrayUtil.castArray()).toEqual([]);
+    });
+  });
+
+  describe('isArray', () => {
+    it('should return true for arrays', () => {
+      expect(ArrayUtil.isArray([])).toBe(true);
+      expect(ArrayUtil.isArray([1, 2, 3])).toBe(true);
+      expect(ArrayUtil.isArray(new Array(3))).toBe(true);
+    });
+
+    it('should return false for non-arrays', () => {
+      expect(ArrayUtil.isArray(null)).toBe(false);
+      expect(ArrayUtil.isArray(undefined)).toBe(false);
+      expect(ArrayUtil.isArray({})).toBe(false);
+      expect(ArrayUtil.isArray('abc')).toBe(false);
+      expect(ArrayUtil.isArray(123)).toBe(false);
+      expect(ArrayUtil.isArray(() => {})).toBe(false);
+      expect(ArrayUtil.isArray({ length: 3 })).toBe(false);
+    });
+  });
+
+  describe('isArrayBuffer', () => {
+    it('should return true for ArrayBuffer', () => {
+      expect(ArrayUtil.isArrayBuffer(new ArrayBuffer(2))).toBe(true);
+    });
+
+    it('should return false for non-ArrayBuffer values', () => {
+      expect(ArrayUtil.isArrayBuffer([])).toBe(false);
+      expect(ArrayUtil.isArrayBuffer(new Uint8Array())).toBe(false);
+      expect(ArrayUtil.isArrayBuffer(null)).toBe(false);
+      expect(ArrayUtil.isArrayBuffer({})).toBe(false);
+    });
+  });
+
+  describe('isArrayLike', () => {
+    it('should return true for array-like values', () => {
+      expect(ArrayUtil.isArrayLike([])).toBe(true);
+      expect(ArrayUtil.isArrayLike([1, 2, 3])).toBe(true);
+      expect(ArrayUtil.isArrayLike('abc')).toBe(true);
+      expect(ArrayUtil.isArrayLike({ length: 0 })).toBe(true);
+      expect(ArrayUtil.isArrayLike({ length: 3 })).toBe(true);
+    });
+
+    it('should return false for non-array-like values', () => {
+      expect(ArrayUtil.isArrayLike(null)).toBe(false);
+      expect(ArrayUtil.isArrayLike(undefined)).toBe(false);
+      expect(ArrayUtil.isArrayLike({})).toBe(false);
+      expect(ArrayUtil.isArrayLike(() => {})).toBe(false);
+      expect(ArrayUtil.isArrayLike(Symbol())).toBe(false);
+    });
+
+    it('should handle invalid length properties', () => {
+      expect(ArrayUtil.isArrayLike({ length: -1 })).toBe(false);
+      expect(ArrayUtil.isArrayLike({ length: Number.MAX_SAFE_INTEGER + 1 })).toBe(false);
+      expect(ArrayUtil.isArrayLike({ length: 'abc' })).toBe(false);
+    });
+  });
+
+  describe('isArrayLikeObject', () => {
+    it('should return true for array-like objects', () => {
+      expect(ArrayUtil.isArrayLikeObject([])).toBe(true);
+      expect(ArrayUtil.isArrayLikeObject([1, 2, 3])).toBe(true);
+      expect(ArrayUtil.isArrayLikeObject({ length: 0 })).toBe(true);
+      expect(ArrayUtil.isArrayLikeObject({ length: 3 })).toBe(true);
+    });
+
+    it('should return false for non-array-like objects', () => {
+      expect(ArrayUtil.isArrayLikeObject('abc')).toBe(false); // 字符串不是对象
+      expect(ArrayUtil.isArrayLikeObject(null)).toBe(false);
+      expect(ArrayUtil.isArrayLikeObject(undefined)).toBe(false);
+      expect(ArrayUtil.isArrayLikeObject({})).toBe(false);
+      expect(ArrayUtil.isArrayLikeObject(() => {})).toBe(false);
+    });
+  });
+
+  describe('isEmpty', () => {
+    it('should return true for empty arrays', () => {
+      expect(ArrayUtil.isEmpty([])).toBe(true);
+      expect(ArrayUtil.isEmpty(new Array())).toBe(true);
+    });
+
+    it('should return false for non-empty arrays', () => {
+      expect(ArrayUtil.isEmpty([1, 2, 3])).toBe(false);
+      expect(ArrayUtil.isEmpty([''])).toBe(false);
+      expect(ArrayUtil.isEmpty([null])).toBe(false);
+      expect(ArrayUtil.isEmpty([undefined])).toBe(false);
+    });
+  });
+
+  describe('toArray', () => {
+    it('should convert array-like objects to arrays', () => {
+      expect(ArrayUtil.toArray('abc')).toEqual(['a', 'b', 'c']);
+      expect(ArrayUtil.toArray({ 0: 'a', 1: 'b', length: 2 })).toEqual(['a', 'b']);
+    });
+
+    it('should convert objects to arrays of values', () => {
+      expect(ArrayUtil.toArray({ a: 1, b: 2 })).toEqual([1, 2]);
+    });
+
+    it('should handle edge cases', () => {
+      expect(ArrayUtil.toArray(null)).toEqual([]);
+      expect(ArrayUtil.toArray(undefined)).toEqual([]);
+      expect(ArrayUtil.toArray(1)).toEqual([]);
+      expect(ArrayUtil.toArray(true)).toEqual([]);
+      expect(ArrayUtil.toArray(false)).toEqual([]);
+      expect(ArrayUtil.toArray(new Set([1, 2, 3]))).toEqual([1, 2, 3]);
+      expect(ArrayUtil.toArray(new Map([['a', 1], ['b', 2]]))).toEqual([['a', 1], ['b', 2]]);
+    });
+
+    it('should return array directly', () => {
+      const arr = [1, 2, 3];
+      expect(ArrayUtil.toArray(arr)).toEqual(arr);
+    });
+  });
 });

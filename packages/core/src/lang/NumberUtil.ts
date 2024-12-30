@@ -5,7 +5,21 @@ import {
   random,
   round,
   floor,
-  ceil
+  ceil,
+  gt,
+  gte,
+  lt,
+  lte,
+  isFinite,
+  isInteger,
+  isLength,
+  isNaN,
+  isSafeInteger,
+  toFinite,
+  toInteger,
+  toLength,
+  toNumber,
+  toSafeInteger
 } from 'lodash-es';
 import Big from 'big.js';
 
@@ -196,4 +210,199 @@ export class NumberUtil {
     
     return decimalPart ? `${formattedInt}${decimalSeparator}${decimalPart}` : `${formattedInt}${decimalSeparator}${'0'.repeat(precision)}`;
   }
+
+  /**
+   * 检查第一个值是否大于第二个值
+   * @param value - 要比较的值
+   * @param other - 另一个要比较的值
+   * @returns 如果value大于other返回true，否则返回false
+   * @example
+   * ```ts
+   * NumberUtil.gt(3, 1) // => true
+   * NumberUtil.gt(3, 3) // => false
+   * ```
+   */
+  static gt = gt;
+
+  /**
+   * 检查第一个值是否大于等于第二个值
+   * @param value - 要比较的值
+   * @param other - 另一个要比较的值
+   * @returns 如果value大于等于other返回true，否则返回false
+   * @example
+   * ```ts
+   * NumberUtil.gte(3, 1) // => true
+   * NumberUtil.gte(3, 3) // => true
+   * NumberUtil.gte(1, 3) // => false
+   * ```
+   */
+  static gte = gte;
+
+  /**
+   * 检查第一个值是否小于第二个值
+   * @param value - 要比较的值
+   * @param other - 另一个要比较的值
+   * @returns 如果value小于other返回true，否则返回false
+   * @example
+   * ```ts
+   * NumberUtil.lt(1, 3) // => true
+   * NumberUtil.lt(3, 3) // => false
+   * NumberUtil.lt(3, 1) // => false
+   * ```
+   */
+  static lt = lt;
+
+  /**
+   * 检查第一个值是否小于等于第二个值
+   * @param value - 要比较的值
+   * @param other - 另一个要比较的值
+   * @returns 如果value小于等于other返回true，否则返回false
+   * @example
+   * ```ts
+   * NumberUtil.lte(1, 3) // => true
+   * NumberUtil.lte(3, 3) // => true
+   * NumberUtil.lte(3, 1) // => false
+   * ```
+   */
+  static lte = lte;
+
+  /**
+   * 检查值是否是有限数字
+   * @param value - 要检查的值
+   * @returns 如果值是有限数字返回true，否则返回false
+   * @example
+   * ```ts
+   * NumberUtil.isFinite(3) // => true
+   * NumberUtil.isFinite(Number.MIN_VALUE) // => true
+   * NumberUtil.isFinite(Infinity) // => false
+   * NumberUtil.isFinite('3') // => false
+   * ```
+   */
+  static isFinite = isFinite;
+
+  /**
+   * 检查值是否是整数
+   * @param value - 要检查的值
+   * @returns 如果值是整数返回true，否则返回false
+   * @example
+   * ```ts
+   * NumberUtil.isInteger(3) // => true
+   * NumberUtil.isInteger(3.0) // => true
+   * NumberUtil.isInteger(3.1) // => false
+   * NumberUtil.isInteger('3') // => false
+   * ```
+   */
+  static isInteger = isInteger;
+
+  /**
+   * 检查值是否是有效的数组类长度
+   * @param value - 要检查的值
+   * @returns 如果值是有效的数组类长度返回true，否则返回false
+   * @example
+   * ```ts
+   * NumberUtil.isLength(3) // => true
+   * NumberUtil.isLength(Number.MAX_SAFE_INTEGER) // => true
+   * NumberUtil.isLength(-1) // => false
+   * NumberUtil.isLength(1.1) // => false
+   * ```
+   */
+  static isLength = isLength;
+
+  /**
+   * 检查值是否是NaN
+   * @param value - 要检查的值
+   * @returns 如果值是NaN返回true，否则返回false
+   * @example
+   * ```ts
+   * NumberUtil.isNaN(NaN) // => true
+   * NumberUtil.isNaN(new Number(NaN)) // => true
+   * NumberUtil.isNaN(undefined) // => false
+   * NumberUtil.isNaN(1) // => false
+   * ```
+   */
+  static isNaN = isNaN;
+
+  /**
+   * 检查值是否是安全整数
+   * @param value - 要检查的值
+   * @returns 如果值是安全整数返回true，否则返回false
+   * @example
+   * ```ts
+   * NumberUtil.isSafeInteger(3) // => true
+   * NumberUtil.isSafeInteger(Number.MAX_SAFE_INTEGER) // => true
+   * NumberUtil.isSafeInteger(3.1) // => false
+   * NumberUtil.isSafeInteger(Number.MAX_VALUE) // => false
+   * ```
+   */
+  static isSafeInteger = isSafeInteger;
+
+  /**
+   * 将值转换为有限数字
+   * @param value - 要转换的值
+   * @returns 转换后的数字
+   * @example
+   * ```ts
+   * NumberUtil.toFinite(3.2) // => 3.2
+   * NumberUtil.toFinite(Number.MIN_VALUE) // => 5e-324
+   * NumberUtil.toFinite(Infinity) // => 1.7976931348623157e+308
+   * NumberUtil.toFinite('3.2') // => 3.2
+   * ```
+   */
+  static toFinite = toFinite;
+
+  /**
+   * 将值转换为整数
+   * @param value - 要转换的值
+   * @returns 转换后的整数
+   * @example
+   * ```ts
+   * NumberUtil.toInteger(3.2) // => 3
+   * NumberUtil.toInteger('3.2') // => 3
+   * NumberUtil.toInteger(Infinity) // => 1.7976931348623157e+308
+   * NumberUtil.toInteger('') // => 0
+   * ```
+   */
+  static toInteger = toInteger;
+
+  /**
+   * 将值转换为有效的数组类长度
+   * @param value - 要转换的值
+   * @returns 转换后的长度
+   * @example
+   * ```ts
+   * NumberUtil.toLength(3.2) // => 3
+   * NumberUtil.toLength('3.2') // => 3
+   * NumberUtil.toLength(-1) // => 0
+   * NumberUtil.toLength(Number.MAX_VALUE) // => 4294967295
+   * ```
+   */
+  static toLength = toLength;
+
+  /**
+   * 将值转换为数字
+   * @param value - 要转换的值
+   * @returns 转换后的数字
+   * @example
+   * ```ts
+   * NumberUtil.toNumber(3.2) // => 3.2
+   * NumberUtil.toNumber('3.2') // => 3.2
+   * NumberUtil.toNumber(Number.MIN_VALUE) // => 5e-324
+   * NumberUtil.toNumber(Infinity) // => Infinity
+   * ```
+   */
+  static toNumber = toNumber;
+
+  /**
+   * 将值转换为安全整数
+   * @param value - 要转换的值
+   * @returns 转换后的安全整数
+   * @example
+   * ```ts
+   * NumberUtil.toSafeInteger(3.2) // => 3
+   * NumberUtil.toSafeInteger(Number.MAX_VALUE) // => 9007199254740991
+   * NumberUtil.toSafeInteger(Infinity) // => 9007199254740991
+   * NumberUtil.toSafeInteger('3.2') // => 3
+   * ```
+   */
+  static toSafeInteger = toSafeInteger;
 } 

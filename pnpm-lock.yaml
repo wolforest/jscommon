@@ -23,12 +23,18 @@ importers:
 
   packages/core:
     dependencies:
+      '@types/js-cookie':
+        specifier: ^3.0.6
+        version: 3.0.6
       big.js:
         specifier: ^6.2.0
         version: 6.2.2
       dayjs:
         specifier: ^1.11.10
         version: 1.11.13
+      js-cookie:
+        specifier: ^3.0.5
+        version: 3.0.5
       localforage:
         specifier: ^1.10.0
         version: 1.10.0
@@ -479,6 +485,9 @@ packages:
 
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
+
+  '@types/js-cookie@3.0.6':
+    resolution: {integrity: sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ==}
 
   '@types/lodash-es@4.17.12':
     resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
@@ -1649,6 +1658,8 @@ snapshots:
   '@types/big.js@6.2.2': {}
 
   '@types/estree@1.0.6': {}
+
+  '@types/js-cookie@3.0.6': {}
 
   '@types/lodash-es@4.17.12':
     dependencies:

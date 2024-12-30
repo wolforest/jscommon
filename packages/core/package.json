@@ -24,8 +24,10 @@
     "test:ui": "vitest --ui"
   },
   "dependencies": {
+    "@types/js-cookie": "^3.0.6",
     "big.js": "^6.2.0",
     "dayjs": "^1.11.10",
+    "js-cookie": "^3.0.5",
     "localforage": "^1.10.0",
     "lodash-es": "^4.17.21",
     "qs": "^6.11.0",

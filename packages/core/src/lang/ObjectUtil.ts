@@ -16,7 +16,7 @@ import {
   functions,
   functionsIn,
   get,
-  has,
+  has as lodashHas,
   hasIn,
   invert,
   invertBy,
@@ -265,7 +265,9 @@ export class ObjectUtil {
    * ObjectUtil.has(object, 'a.b') // => true
    * ```
    */
-  static has = has;
+  static has(object: any, path: string | string[]): boolean {
+    return lodashHas(object, path);
+  }
 
   /**
    * 检查路径是否是对象的直接或继承属性

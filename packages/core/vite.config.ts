@@ -7,8 +7,8 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'jscommon',
-      fileName: (format) => `index.${format === 'es' ? 'mjs' : 'js'}`,
-      formats: ['es', 'cjs']
+      formats: ['es'],
+      fileName: () => 'index.js'
     },
     rollupOptions: {
       external: [
@@ -21,21 +21,19 @@ export default defineConfig({
         'validator'
       ],
       output: {
+        format: 'es',
         preserveModules: true,
-        preserveModulesRoot: 'src'
+        preserveModulesRoot: 'src',
+        entryFileNames: '[name].js'
       }
     },
-    minify: 'esbuild',
-    sourcemap: true,
-    target: 'esnext'
+    minify: false,
+    sourcemap: true
   },
   plugins: [
     dts({
-      insertTypesEntry: true,
+      rollupTypes: true,
       include: ['src']
     })
-  ],
-  optimizeDeps: {
-    include: ['big.js', 'dayjs', 'lodash-es']
-  }
+  ]
 }); 

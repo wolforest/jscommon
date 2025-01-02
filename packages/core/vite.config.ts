@@ -1,14 +1,17 @@
 import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
 
 export default defineConfig({
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
-      name: 'jscommon',
+      entry: {
+        index: resolve(__dirname, 'src/index.ts'),
+        'lang/index': resolve(__dirname, 'src/lang/index.ts'),
+        'storage/index': resolve(__dirname, 'src/storage/index.ts'),
+        'net/index': resolve(__dirname, 'src/net/index.ts')
+      },
       formats: ['es'],
-      fileName: () => 'index.js'
+      fileName: (format, entryName) => `${entryName}.js`
     },
     rollupOptions: {
       external: [
@@ -22,18 +25,19 @@ export default defineConfig({
       ],
       output: {
         format: 'es',
-        preserveModules: true,
-        preserveModulesRoot: 'src',
-        entryFileNames: '[name].js'
+        exports: 'named',
+        interop: 'auto',
+        generatedCode: {
+          constBindings: true
+        }
       }
     },
-    minify: false,
-    sourcemap: true
-  },
-  plugins: [
-    dts({
-      rollupTypes: true,
-      include: ['src']
-    })
-  ]
+    minify: 'terser',
+    sourcemap: true,
+    target: 'esnext',
+    terserOptions: {
+      compress: true,
+      mangle: true
+    }
+  }
 }); 

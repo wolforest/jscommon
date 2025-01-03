@@ -7,6 +7,7 @@
     "test": "pnpm -r test",
     "clean": "pnpm -r clean",
     "publish:beta": "pnpm -r publish --tag beta",
+    "publish": "pnpm -r publish --tag latest",
     "dev:react": "pnpm build && pnpm --filter @examples/react-demo dev",
     "dev:vue": "pnpm build && pnpm --filter @examples/vue-demo dev",
     "dev:taro:h5": "pnpm build && pnpm --filter @examples/taro-demo dev:h5",

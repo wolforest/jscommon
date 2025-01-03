@@ -2,14 +2,30 @@
   "miniprogramRoot": "dist/",
   "projectname": "taro-demo",
   "description": "taro demo",
-  "appid": "touristappid",
+  "appid": "wx709083b7080739f0",
   "setting": {
     "urlCheck": true,
     "es6": false,
     "enhance": false,
     "compileHotReLoad": false,
     "postcss": false,
-    "minified": false
+    "minified": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
   },
-  "compileType": "miniprogram"
-} 
+  "compileType": "miniprogram",
+  "libVersion": "3.7.4",
+  "srcMiniprogramRoot": "dist/",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
+}

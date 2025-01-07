@@ -8,7 +8,8 @@ export default defineConfig({
         index: resolve(__dirname, 'src/index.ts'),
         'lang/index': resolve(__dirname, 'src/lang/index.ts'),
         'storage/index': resolve(__dirname, 'src/storage/index.ts'),
-        'net/index': resolve(__dirname, 'src/net/index.ts')
+        'net/index': resolve(__dirname, 'src/net/index.ts'),
+        'style/index': resolve(__dirname, 'src/style/index.ts')
       },
       formats: ['es'],
       fileName: (format, entryName) => `${entryName}.js`
@@ -16,6 +17,7 @@ export default defineConfig({
     rollupOptions: {
       external: [
         'big.js',
+        'classnames',
         'dayjs',
         'js-cookie',
         'localforage',

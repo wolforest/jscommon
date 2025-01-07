@@ -25,6 +25,11 @@
       "types": "./dist/net/*.d.ts",
       "import": "./dist/net/*.mjs",
       "require": "./dist/net/*.js"
+    },
+    "./style": {
+      "types": "./dist/style/index.d.ts",
+      "import": "./dist/style/index.mjs",
+      "require": "./dist/style/index.js"
     }
   },
   "files": [
@@ -49,6 +54,7 @@
   "dependencies": {
     "@types/js-cookie": "^3.0.6",
     "big.js": "^6.2.0",
+    "classnames": "^2.5.1",
     "dayjs": "^1.11.10",
     "js-cookie": "^3.0.5",
     "localforage": "^1.10.0",
@@ -58,6 +64,7 @@
   },
   "devDependencies": {
     "@types/big.js": "^6.2.0",
+    "@types/classnames": "^2.3.3",
     "@types/lodash": "^4.17.13",
     "@types/lodash-es": "^4.17.12",
     "@types/qs": "^6.9.0",

@@ -5,15 +5,19 @@
     "dev": "pnpm build && pnpm -r dev",
     "build": "pnpm --filter @wolforest/jscommon build",
     "test": "pnpm -r test",
-    "clean": "pnpm -r clean",
+    "clean": "pnpm -r exec rimraf dist",
+    "clean:all": "pnpm -r exec rimraf dist node_modules",
     "publish:jscommon": "pnpm --filter @wolforest/jscommon publish --access public",
     "publish:jscommon:beta": "pnpm --filter @wolforest/jscommon publish --tag beta",
     "dev:react": "pnpm build && pnpm --filter @examples/react-demo dev",
     "dev:vue": "pnpm build && pnpm --filter @examples/vue-demo dev",
     "dev:taro:h5": "pnpm build && pnpm --filter @examples/taro-demo dev:h5",
-    "dev:taro:weapp": "pnpm build && pnpm --filter @examples/taro-demo dev:weapp"
+    "dev:taro:weapp": "pnpm build && pnpm --filter @examples/taro-demo dev:weapp",
+    "build:watch": "pnpm --filter @wolforest/jscommon dev"
   },
   "devDependencies": {
+    "@types/node": "^22.10.10",
+    "rimraf": "^5.0.1",
     "typescript": "^5.3.3",
     "vite": "^5.0.0",
     "vite-plugin-dts": "^4.4.0",

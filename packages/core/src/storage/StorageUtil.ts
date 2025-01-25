@@ -75,7 +75,7 @@ export class StorageUtil {
     }
   }
 
-  /**
+/**
    * 获取存储项数量
    * @returns 存储项数量
    * @example
@@ -85,7 +85,7 @@ export class StorageUtil {
    * console.log(`Storage has ${count} items`);
    * ```
    */
-  static async length(): Promise<number> {
+  static async getLength(): Promise<number> {
     try {
       return await localforage.length();
     } catch (err) {

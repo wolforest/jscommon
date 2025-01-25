@@ -1,4 +1,5 @@
 import VConsole from 'vconsole';
+import type { VConsoleOptions } from 'vconsole';
 
 /**
  * VConsole 工具类,用于移动端调试

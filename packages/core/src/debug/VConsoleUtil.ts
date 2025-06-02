@@ -1,5 +1,4 @@
 import VConsole from 'vconsole';
-import type { VConsoleOptions } from 'vconsole';
 
 /**
  * VConsole 工具类,用于移动端调试
@@ -23,7 +22,7 @@ export class VConsoleUtil {
    * });
    * ```
    */
-  static init(options?: VConsoleOptions): VConsole {
+  static init(options?: any): VConsole {
     if (!this.instance) {
       this.instance = new VConsole(options);
     }

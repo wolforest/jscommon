@@ -83,7 +83,7 @@ export class ArrayUtil {
    * ArrayUtil.chunk(['a', 'b', 'c', 'd'], 2) // => [['a', 'b'], ['c', 'd']]
    * ```
    */
-  static chunk = chunk;
+  static chunk: typeof chunk = chunk;
 
   /**
    * 创建一个移除了所有假值的数组
@@ -94,7 +94,7 @@ export class ArrayUtil {
    * ArrayUtil.compact([0, 1, false, 2, '', 3]) // => [1, 2, 3]
    * ```
    */
-  static compact = compact;
+  static compact: typeof compact = compact;
 
   /**
    * 合并多个数组
@@ -106,7 +106,7 @@ export class ArrayUtil {
    * ArrayUtil.concat([1], 2, [3], [[4]]) // => [1, 2, 3, [4]]
    * ```
    */
-  static concat = concat;
+  static concat: typeof concat = concat;
 
   /**
    * 创建一个具有唯一值的数组，每个值不包含在其他给定的数组中
@@ -118,7 +118,7 @@ export class ArrayUtil {
    * ArrayUtil.difference([2, 1], [2, 3]) // => [1]
    * ```
    */
-  static difference = difference;
+  static difference: typeof difference = difference;
 
   /**
    * 类似于 difference，但支持迭代器
@@ -130,7 +130,7 @@ export class ArrayUtil {
    * ArrayUtil.differenceBy([2.1, 1.2], [2.3, 3.4], Math.floor) // => [1.2]
    * ```
    */
-  static differenceBy = differenceBy;
+  static differenceBy: typeof differenceBy = differenceBy;
 
   /**
    * 类似于 difference，但支持比较器
@@ -143,7 +143,7 @@ export class ArrayUtil {
    * ArrayUtil.differenceWith(objects, [{ x: 1 }], (a, b) => a.x === b.x) // => [{ x: 2 }]
    * ```
    */
-  static differenceWith = differenceWith;
+  static differenceWith: typeof differenceWith = differenceWith;
 
   /**
    * 创建一个切片数组，去除数组的前 n 个元素
@@ -155,7 +155,7 @@ export class ArrayUtil {
    * ArrayUtil.drop([1, 2, 3], 2) // => [3]
    * ```
    */
-  static drop = drop;
+  static drop: typeof drop = drop;
 
   /**
    * 创建一个切片数组，去除数组的后 n 个元素
@@ -167,7 +167,7 @@ export class ArrayUtil {
    * ArrayUtil.dropRight([1, 2, 3], 2) // => [1]
    * ```
    */
-  static dropRight = dropRight;
+  static dropRight: typeof dropRight = dropRight;
 
   /**
    * 创建一个切片数组，去除数组中从末尾开始不满足条件的元素
@@ -179,7 +179,7 @@ export class ArrayUtil {
    * ArrayUtil.dropRightWhile([1, 2, 3, 4], n => n > 2) // => [1, 2]
    * ```
    */
-  static dropRightWhile = dropRightWhile;
+  static dropRightWhile: typeof dropRightWhile = dropRightWhile;
 
   /**
    * 创建一个切片数组，去除数组中从开头开始不满足条件的元素
@@ -191,7 +191,7 @@ export class ArrayUtil {
    * ArrayUtil.dropWhile([1, 2, 3, 4], n => n < 3) // => [3, 4]
    * ```
    */
-  static dropWhile = dropWhile;
+  static dropWhile: typeof dropWhile = dropWhile;
 
   /**
    * 使用给定值填充数组
@@ -206,7 +206,7 @@ export class ArrayUtil {
    * ArrayUtil.fill([1, 2, 3], 'a', 1, 2) // => [1, 'a', 3]
    * ```
    */
-  static fill = fill;
+  static fill: typeof fill = fill;
 
   /**
    * 查找数组中第一个满足条件的元素的索引
@@ -219,7 +219,7 @@ export class ArrayUtil {
    * ArrayUtil.findIndex([{ id: 1 }, { id: 2 }], o => o.id === 2) // => 1
    * ```
    */
-  static findIndex = findIndex;
+  static findIndex: typeof findIndex = findIndex;
 
   /**
    * 查找数组中最后一个满足条件的元素的索引
@@ -232,7 +232,7 @@ export class ArrayUtil {
    * ArrayUtil.findLastIndex([{ id: 1 }, { id: 2 }, { id: 1 }], o => o.id === 1) // => 2
    * ```
    */
-  static findLastIndex = findLastIndex;
+  static findLastIndex: typeof findLastIndex = findLastIndex;
 
   /**
    * 获取数组的第一个元素
@@ -243,7 +243,7 @@ export class ArrayUtil {
    * ArrayUtil.head([1, 2, 3]) // => 1
    * ```
    */
-  static head = head;
+  static head: typeof head = head;
 
   /**
    * 减少一级数组嵌套深度
@@ -254,7 +254,7 @@ export class ArrayUtil {
    * ArrayUtil.flatten([1, [2, [3, [4]], 5]]) // => [1, 2, [3, [4]], 5]
    * ```
    */
-  static flatten = flatten;
+  static flatten: typeof flatten = flatten;
 
   /**
    * 将数组递归为一维数组
@@ -265,7 +265,7 @@ export class ArrayUtil {
    * ArrayUtil.flattenDeep([1, [2, [3, [4]], 5]]) // => [1, 2, 3, 4, 5]
    * ```
    */
-  static flattenDeep = flattenDeep;
+  static flattenDeep: typeof flattenDeep = flattenDeep;
 
   /**
    * 根据指定的深度递归减少数组的嵌套层级
@@ -277,7 +277,7 @@ export class ArrayUtil {
    * ArrayUtil.flattenDepth([1, [2, [3, [4]], 5]], 2) // => [1, 2, 3, [4], 5]
    * ```
    */
-  static flattenDepth = flattenDepth;
+  static flattenDepth: typeof flattenDepth = flattenDepth;
 
   /**
    * 将键值对数组转换为对象
@@ -288,7 +288,7 @@ export class ArrayUtil {
    * ArrayUtil.fromPairs([['a', 1], ['b', 2]]) // => { 'a': 1, 'b': 2 }
    * ```
    */
-  static fromPairs = fromPairs;
+  static fromPairs: typeof fromPairs = fromPairs;
 
   /**
    * 获取元素在数组中的索引
@@ -301,7 +301,7 @@ export class ArrayUtil {
    * ArrayUtil.indexOf([1, 2, 1, 2], 2) // => 1
    * ```
    */
-  static indexOf = indexOf;
+  static indexOf: typeof indexOf = indexOf;
 
   /**
    * 获取数组中除了最后一个元素之外的所有元素
@@ -312,7 +312,7 @@ export class ArrayUtil {
    * ArrayUtil.initial([1, 2, 3]) // => [1, 2]
    * ```
    */
-  static initial = initial;
+  static initial: typeof initial = initial;
 
   /**
    * 创建一个包含所有数组唯一值的新数组
@@ -323,7 +323,7 @@ export class ArrayUtil {
    * ArrayUtil.intersection([2, 1], [2, 3]) // => [2]
    * ```
    */
-  static intersection = intersection;
+  static intersection: typeof intersection = intersection;
 
   /**
    * 类似于 intersection，但支持迭代器
@@ -335,7 +335,7 @@ export class ArrayUtil {
    * ArrayUtil.intersectionBy([2.1, 1.2], [2.3, 3.4], Math.floor) // => [2.1]
    * ```
    */
-  static intersectionBy = intersectionBy;
+  static intersectionBy: typeof intersectionBy = intersectionBy;
 
   /**
    * 类似于 intersection，但支持比较器
@@ -348,7 +348,7 @@ export class ArrayUtil {
    * ArrayUtil.intersectionWith(objects, [{ x: 1 }], (a, b) => a.x === b.x) // => [{ x: 1 }]
    * ```
    */
-  static intersectionWith = intersectionWith;
+  static intersectionWith: typeof intersectionWith = intersectionWith;
 
   /**
    * 将数组转换为由分隔符连接的字符串
@@ -360,7 +360,7 @@ export class ArrayUtil {
    * ArrayUtil.join(['a', 'b', 'c'], '~') // => 'a~b~c'
    * ```
    */
-  static join = join;
+  static join: typeof join = join;
 
   /**
    * 获取数组的最后一个元素
@@ -371,7 +371,7 @@ export class ArrayUtil {
    * ArrayUtil.last([1, 2, 3]) // => 3
    * ```
    */
-  static last = last;
+  static last: typeof last = last;
 
   /**
    * 获取元素在数组中的最后一个索引
@@ -384,7 +384,7 @@ export class ArrayUtil {
    * ArrayUtil.lastIndexOf([1, 2, 1, 2], 2) // => 3
    * ```
    */
-  static lastIndexOf = lastIndexOf;
+  static lastIndexOf: typeof lastIndexOf = lastIndexOf;
 
   /**
    * 获取数组的第 n 个元素
@@ -397,7 +397,7 @@ export class ArrayUtil {
    * ArrayUtil.nth(['a', 'b', 'c', 'd'], -2) // => 'c'
    * ```
    */
-  static nth = nth;
+  static nth: typeof nth = nth;
 
   /**
    * 移除数组中所有给定值的元素
@@ -410,7 +410,7 @@ export class ArrayUtil {
    * ArrayUtil.pull(array, 'a', 'c') // => ['b', 'b']
    * ```
    */
-  static pull = pull;
+  static pull: typeof pull = pull;
 
   /**
    * 移除数组中所有给定数组中的元素
@@ -423,7 +423,7 @@ export class ArrayUtil {
    * ArrayUtil.pullAll(array, ['a', 'c']) // => ['b', 'b']
    * ```
    */
-  static pullAll = pullAll;
+  static pullAll: typeof pullAll = pullAll;
 
   /**
    * 类似于 pullAll，但支持迭代器
@@ -437,7 +437,7 @@ export class ArrayUtil {
    * ArrayUtil.pullAllBy(array, [{ x: 1 }, { x: 3 }], 'x') // => [{ x: 2 }]
    * ```
    */
-  static pullAllBy = pullAllBy;
+  static pullAllBy: typeof pullAllBy = pullAllBy;
 
   /**
    * 类似于 pullAll，但支持比较器
@@ -451,7 +451,7 @@ export class ArrayUtil {
    * ArrayUtil.pullAllWith(array, [{ x: 1 }], (a, b) => a.x === b.x) // => [{ x: 2 }, { x: 3 }]
    * ```
    */
-  static pullAllWith = pullAllWith;
+  static pullAllWith: typeof pullAllWith = pullAllWith;
 
   /**
    * 根据索引移除数组中的元素
@@ -464,7 +464,7 @@ export class ArrayUtil {
    * const pulled = ArrayUtil.pullAt(array, [1, 3]); // array => ['a', 'c'], pulled => ['b', 'd']
    * ```
    */
-  static pullAt = pullAt;
+  static pullAt: typeof pullAt = pullAt;
 
   /**
    * 移除数组中满足条件的元素
@@ -477,7 +477,7 @@ export class ArrayUtil {
    * const evens = ArrayUtil.remove(array, n => n % 2 === 0); // array => [1, 3], evens => [2, 4]
    * ```
    */
-  static remove = remove;
+  static remove: typeof remove = remove;
 
   /**
    * 反转数组
@@ -488,7 +488,7 @@ export class ArrayUtil {
    * ArrayUtil.reverse([1, 2, 3]) // => [3, 2, 1]
    * ```
    */
-  static reverse = reverse;
+  static reverse: typeof reverse = reverse;
 
   /**
    * 创建数组的切片
@@ -501,7 +501,7 @@ export class ArrayUtil {
    * ArrayUtil.slice([1, 2, 3, 4], 1, 3) // => [2, 3]
    * ```
    */
-  static slice = slice;
+  static slice: typeof slice = slice;
 
   /**
    * 查找值应该插入有序数组的位置
@@ -513,7 +513,7 @@ export class ArrayUtil {
    * ArrayUtil.sortedIndex([30, 50], 40) // => 1
    * ```
    */
-  static sortedIndex = sortedIndex;
+  static sortedIndex: typeof sortedIndex = sortedIndex;
 
   /**
    * 类似于 sortedIndex，但支持迭代器
@@ -526,7 +526,7 @@ export class ArrayUtil {
    * ArrayUtil.sortedIndexBy([{ x: 30 }, { x: 50 }], { x: 40 }, 'x') // => 1
    * ```
    */
-  static sortedIndexBy = sortedIndexBy;
+  static sortedIndexBy: typeof sortedIndexBy = sortedIndexBy;
 
   /**
    * 查找值在有序数组中的位置
@@ -538,7 +538,7 @@ export class ArrayUtil {
    * ArrayUtil.sortedIndexOf([4, 5, 5, 5, 6], 5) // => 1
    * ```
    */
-  static sortedIndexOf = sortedIndexOf;
+  static sortedIndexOf: typeof sortedIndexOf = sortedIndexOf;
 
   /**
    * 查找值应该插入有序数组的最高位置
@@ -550,7 +550,7 @@ export class ArrayUtil {
    * ArrayUtil.sortedLastIndex([4, 5, 5, 5, 6], 5) // => 4
    * ```
    */
-  static sortedLastIndex = sortedLastIndex;
+  static sortedLastIndex: typeof sortedLastIndex = sortedLastIndex;
 
   /**
    * 类似于 sortedLastIndex，但支持迭代器
@@ -563,7 +563,7 @@ export class ArrayUtil {
    * ArrayUtil.sortedLastIndexBy([{ x: 4 }, { x: 5 }, { x: 5 }], { x: 5 }, 'x') // => 3
    * ```
    */
-  static sortedLastIndexBy = sortedLastIndexBy;
+  static sortedLastIndexBy: typeof sortedLastIndexBy = sortedLastIndexBy;
 
   /**
    * 查找值在有序数组中的最后位置
@@ -575,7 +575,7 @@ export class ArrayUtil {
    * ArrayUtil.sortedLastIndexOf([4, 5, 5, 5, 6], 5) // => 3
    * ```
    */
-  static sortedLastIndexOf = sortedLastIndexOf;
+  static sortedLastIndexOf: typeof sortedLastIndexOf = sortedLastIndexOf;
 
   /**
    * 创建一个有序数组的唯一值数组
@@ -586,7 +586,7 @@ export class ArrayUtil {
    * ArrayUtil.sortedUniq([1, 1, 2, 3, 3]) // => [1, 2, 3]
    * ```
    */
-  static sortedUniq = sortedUniq;
+  static sortedUniq: typeof sortedUniq = sortedUniq;
 
   /**
    * 类似于 sortedUniq，但支持迭代器
@@ -598,7 +598,7 @@ export class ArrayUtil {
    * ArrayUtil.sortedUniqBy([1.1, 1.2, 2.3, 2.4], Math.floor) // => [1.1, 2.3]
    * ```
    */
-  static sortedUniqBy = sortedUniqBy;
+  static sortedUniqBy: typeof sortedUniqBy = sortedUniqBy;
 
   /**
    * 获取除了数组第一个元素以外的所有元素
@@ -609,7 +609,7 @@ export class ArrayUtil {
    * ArrayUtil.tail([1, 2, 3]) // => [2, 3]
    * ```
    */
-  static tail = tail;
+  static tail: typeof tail = tail;
 
   /**
    * 创建一个数组切片，从数组开头提取 n 个元素
@@ -621,7 +621,7 @@ export class ArrayUtil {
    * ArrayUtil.take([1, 2, 3], 2) // => [1, 2]
    * ```
    */
-  static take = take;
+  static take: typeof take = take;
 
   /**
    * 创建一个数组切片，从数组末尾提取 n 个元素
@@ -633,7 +633,7 @@ export class ArrayUtil {
    * ArrayUtil.takeRight([1, 2, 3], 2) // => [2, 3]
    * ```
    */
-  static takeRight = takeRight;
+  static takeRight: typeof takeRight = takeRight;
 
   /**
    * 从数组末尾开始提取元素，直到 predicate 返回假值
@@ -645,7 +645,7 @@ export class ArrayUtil {
    * ArrayUtil.takeRightWhile([1, 2, 3, 4], n => n > 2) // => [3, 4]
    * ```
    */
-  static takeRightWhile = takeRightWhile;
+  static takeRightWhile: typeof takeRightWhile = takeRightWhile;
 
   /**
    * 从数组开头提取元素，直到 predicate 返回假值
@@ -657,7 +657,7 @@ export class ArrayUtil {
    * ArrayUtil.takeWhile([1, 2, 3, 4], n => n < 3) // => [1, 2]
    * ```
    */
-  static takeWhile = takeWhile;
+  static takeWhile: typeof takeWhile = takeWhile;
 
   /**
    * 创建一个包含所有给定数组唯一值的数组
@@ -668,7 +668,7 @@ export class ArrayUtil {
    * ArrayUtil.union([2], [1, 2]) // => [2, 1]
    * ```
    */
-  static union = union;
+  static union: typeof union = union;
 
   /**
    * 类似于 union，但支持迭代器
@@ -680,7 +680,7 @@ export class ArrayUtil {
    * ArrayUtil.unionBy([2.1], [1.2, 2.3], Math.floor) // => [2.1, 1.2]
    * ```
    */
-  static unionBy = unionBy;
+  static unionBy: typeof unionBy = unionBy;
 
   /**
    * 类似于 union，但支持比较器
@@ -692,7 +692,7 @@ export class ArrayUtil {
    * ArrayUtil.unionWith([{ x: 1 }], [{ x: 2 }, { x: 1 }], (a, b) => a.x === b.x) // => [{ x: 1 }, { x: 2 }]
    * ```
    */
-  static unionWith = unionWith;
+  static unionWith: typeof unionWith = unionWith;
 
   /**
    * 创建一个去重后的数组
@@ -703,7 +703,7 @@ export class ArrayUtil {
    * ArrayUtil.uniq([2, 1, 2]) // => [2, 1]
    * ```
    */
-  static uniq = uniq;
+  static uniq: typeof uniq = uniq;
 
   /**
    * 类似于 uniq，但支持迭代器
@@ -715,7 +715,7 @@ export class ArrayUtil {
    * ArrayUtil.uniqBy([2.1, 1.2, 2.3], Math.floor) // => [2.1, 1.2]
    * ```
    */
-  static uniqBy = uniqBy;
+  static uniqBy: typeof uniqBy = uniqBy;
 
   /**
    * 类似于 uniq，但支持比较器
@@ -727,7 +727,7 @@ export class ArrayUtil {
    * ArrayUtil.uniqWith([{ x: 1 }, { x: 2 }, { x: 1 }], (a, b) => a.x === b.x) // => [{ x: 1 }, { x: 2 }]
    * ```
    */
-  static uniqWith = uniqWith;
+  static uniqWith: typeof uniqWith = uniqWith;
 
   /**
    * 将打包的数组还原为分组的数组
@@ -738,7 +738,7 @@ export class ArrayUtil {
    * ArrayUtil.unzip([['a', 1], ['b', 2]]) // => [['a', 'b'], [1, 2]]
    * ```
    */
-  static unzip = unzip;
+  static unzip: typeof unzip = unzip;
 
   /**
    * 类似于 unzip，但支持迭代器
@@ -750,7 +750,7 @@ export class ArrayUtil {
    * ArrayUtil.unzipWith([[1, 10], [2, 20]], (a, b) => a + b) // => [3, 30]
    * ```
    */
-  static unzipWith = unzipWith;
+  static unzipWith: typeof unzipWith = unzipWith;
 
   /**
    * 创建一个排除所有给定值的数组
@@ -762,7 +762,7 @@ export class ArrayUtil {
    * ArrayUtil.without([2, 1, 2, 3], 1, 2) // => [3]
    * ```
    */
-  static without = without;
+  static without: typeof without = without;
 
   /**
    * 创建一个给定数组唯一值的数组
@@ -773,7 +773,7 @@ export class ArrayUtil {
    * ArrayUtil.xor([2, 1], [2, 3]) // => [1, 3]
    * ```
    */
-  static xor = xor;
+  static xor: typeof xor = xor;
 
   /**
    * 类似于 xor，但支持迭代器
@@ -785,7 +785,7 @@ export class ArrayUtil {
    * ArrayUtil.xorBy([2.1, 1.2], [2.3, 3.4], Math.floor) // => [1.2, 3.4]
    * ```
    */
-  static xorBy = xorBy;
+  static xorBy: typeof xorBy = xorBy;
 
   /**
    * 类似于 xor，但支持比较器
@@ -798,7 +798,7 @@ export class ArrayUtil {
    * ArrayUtil.xorWith(objects, [{ x: 1 }], (a, b) => a.x === b.x) // => [{ x: 2 }]
    * ```
    */
-  static xorWith = xorWith;
+  static xorWith: typeof xorWith = xorWith;
 
   /**
    * 创建一个分组元素的数组
@@ -809,7 +809,7 @@ export class ArrayUtil {
    * ArrayUtil.zip(['a', 'b'], [1, 2]) // => [['a', 1], ['b', 2]]
    * ```
    */
-  static zip = zip;
+  static zip: typeof zip = zip;
 
   /**
    * 创建一个对象，key 来自第一个数组，value 来自第二个数组
@@ -821,7 +821,7 @@ export class ArrayUtil {
    * ArrayUtil.zipObject(['a', 'b'], [1, 2]) // => { 'a': 1, 'b': 2 }
    * ```
    */
-  static zipObject = zipObject;
+  static zipObject: typeof zipObject = zipObject;
 
   /**
    * 类似于 zipObject，但支持属性路径
@@ -834,7 +834,7 @@ export class ArrayUtil {
    * // => { 'a': { 'b': [{ 'c': 1 }, { 'd': 2 }] } }
    * ```
    */
-  static zipObjectDeep = zipObjectDeep;
+  static zipObjectDeep: typeof zipObjectDeep = zipObjectDeep;
 
   /**
    * 类似于 zip，但支持迭代器
@@ -846,7 +846,7 @@ export class ArrayUtil {
    * ArrayUtil.zipWith([1, 2], [10, 20], (a, b) => a + b) // => [11, 22]
    * ```
    */
-  static zipWith = zipWith;
+  static zipWith: typeof zipWith = zipWith;
 
   /**
    * 将值转换为数组
@@ -860,7 +860,7 @@ export class ArrayUtil {
    * ArrayUtil.castArray('abc') // => ['abc']
    * ```
    */
-  static castArray = castArray;
+  static castArray: typeof castArray = castArray;
 
   /**
    * 检查值是否是 Array 对象
@@ -873,7 +873,7 @@ export class ArrayUtil {
    * ArrayUtil.isArray(document.body.children) // => false
    * ```
    */
-  static isArray = isArray;
+  static isArray: typeof isArray = isArray;
 
   /**
    * 检查值是否是 ArrayBuffer 对象
@@ -885,7 +885,7 @@ export class ArrayUtil {
    * ArrayUtil.isArrayBuffer(new Array(2)) // => false
    * ```
    */
-  static isArrayBuffer = isArrayBuffer;
+  static isArrayBuffer: typeof isArrayBuffer = isArrayBuffer;
 
   /**
    * 检查值是否是类数组
@@ -899,7 +899,7 @@ export class ArrayUtil {
    * ArrayUtil.isArrayLike(() => {}) // => false
    * ```
    */
-  static isArrayLike = isArrayLike;
+  static isArrayLike: typeof isArrayLike = isArrayLike;
 
   /**
    * 检查值是否是类数组对象
@@ -912,7 +912,7 @@ export class ArrayUtil {
    * ArrayUtil.isArrayLikeObject('abc') // => false
    * ```
    */
-  static isArrayLikeObject = isArrayLikeObject;
+  static isArrayLikeObject: typeof isArrayLikeObject = isArrayLikeObject;
 
   /**
    * 检查数组是否为空
@@ -924,7 +924,7 @@ export class ArrayUtil {
    * ArrayUtil.isEmpty([1, 2, 3]) // => false
    * ```
    */
-  static isEmpty = isEmpty;
+  static isEmpty: typeof isEmpty = isEmpty;
 
   /**
    * 转换值为数组
@@ -938,5 +938,5 @@ export class ArrayUtil {
    * ArrayUtil.toArray(null) // => []
    * ```
    */
-  static toArray = toArray;
+  static toArray: typeof toArray = toArray;
 } 

@@ -92,7 +92,7 @@ export class ObjectUtil {
    * @param customizer - 自定义处理程序
    * @returns 目标对象
    */
-  static assignInWith = assignInWith;
+  static assignInWith: typeof assignInWith = assignInWith;
 
   /**
    * 类似于 assign，但支持自定义处理程序
@@ -101,7 +101,7 @@ export class ObjectUtil {
    * @param customizer - 自定义处理程序
    * @returns 目标对象
    */
-  static assignWith = assignWith;
+  static assignWith: typeof assignWith = assignWith;
 
   /**
    * 根据对象路径获取值数组
@@ -114,7 +114,7 @@ export class ObjectUtil {
    * ObjectUtil.at(object, ['a[0].b.c', 'a[1]']) // => [3, 4]
    * ```
    */
-  static at = at;
+  static at: typeof at = at;
 
   /**
    * 创建一个继承 prototype 的对象
@@ -159,7 +159,7 @@ export class ObjectUtil {
    * ObjectUtil.findKey(users, o => o.age < 40) // => 'barney'
    * ```
    */
-  static findKey = findKey;
+  static findKey: typeof findKey = findKey;
 
   /**
    * 类似于 findKey，但是从后往前遍历
@@ -167,7 +167,7 @@ export class ObjectUtil {
    * @param predicate - 判断函数
    * @returns 找到的键名，否则返回 undefined
    */
-  static findLastKey = findLastKey;
+  static findLastKey: typeof findLastKey = findLastKey;
 
   /**
    * 遍历对象的自身和继承的可枚举属性
@@ -182,7 +182,7 @@ export class ObjectUtil {
    * // => 输出 'a', 'b', 'c'
    * ```
    */
-  static forIn = forIn;
+  static forIn: typeof forIn = forIn;
 
   /**
    * 类似于 forIn，但是从后往前遍历
@@ -190,7 +190,7 @@ export class ObjectUtil {
    * @param iteratee - 迭代函数
    * @returns 原对象
    */
-  static forInRight = forInRight;
+  static forInRight: typeof forInRight = forInRight;
 
   /**
    * 遍历对象的自身可枚举属性
@@ -205,7 +205,7 @@ export class ObjectUtil {
    * // => 输出 'a', 'b'
    * ```
    */
-  static forOwn = forOwn;
+  static forOwn: typeof forOwn = forOwn;
 
   /**
    * 类似于 forOwn，但是从后往前遍历
@@ -213,7 +213,7 @@ export class ObjectUtil {
    * @param iteratee - 迭代函数
    * @returns 原对象
    */
-  static forOwnRight = forOwnRight;
+  static forOwnRight: typeof forOwnRight = forOwnRight;
 
   /**
    * 获取对象的函数属性名数组
@@ -251,7 +251,7 @@ export class ObjectUtil {
    * ObjectUtil.get(object, 'a.b.c', 'default') // => 'default'
    * ```
    */
-  static get = get;
+  static get: typeof get = get;
 
   /**
    * 检查路径是否是对象的直接属性
@@ -287,7 +287,7 @@ export class ObjectUtil {
    * ObjectUtil.invert(object) // => { '1': 'c', '2': 'b' }
    * ```
    */
-  static invert = invert;
+  static invert: typeof invert = invert;
 
   /**
    * 类似于 invert，但支持自定义处理程序
@@ -300,7 +300,7 @@ export class ObjectUtil {
    * ObjectUtil.invertBy(object) // => { '1': ['a', 'c'], '2': ['b'] }
    * ```
    */
-  static invertBy = invertBy;
+  static invertBy: typeof invertBy = invertBy;
 
   /**
    * 调用对象路径上的方法
@@ -347,7 +347,7 @@ export class ObjectUtil {
    * // => { 'a1': 1, 'b2': 2 }
    * ```
    */
-  static mapKeys = mapKeys;
+  static mapKeys: typeof mapKeys = mapKeys;
 
   /**
    * 创建一个对象，其值经过处理
@@ -360,7 +360,7 @@ export class ObjectUtil {
    * ObjectUtil.mapValues(users, o => o.age) // => { 'fred': 40, 'pebbles': 1 }
    * ```
    */
-  static mapValues = mapValues;
+  static mapValues: typeof mapValues = mapValues;
 
   /**
    * 递归合并源对象到目标对象
@@ -396,7 +396,7 @@ export class ObjectUtil {
    * ObjectUtil.omit(object, ['a', 'c']) // => { 'b': '2' }
    * ```
    */
-  static omit = omit;
+  static omit: typeof omit = omit;
 
   /**
    * 创建一个对象，忽略不满足条件的属性
@@ -409,7 +409,7 @@ export class ObjectUtil {
    * ObjectUtil.omitBy(object, isNumber) // => { 'b': '2' }
    * ```
    */
-  static omitBy = omitBy;
+  static omitBy: typeof omitBy = omitBy;
 
   /**
    * 创建一个对象，只包含指定的属性
@@ -422,7 +422,7 @@ export class ObjectUtil {
    * ObjectUtil.pick(object, ['a', 'c']) // => { 'a': 1, 'c': 3 }
    * ```
    */
-  static pick = pick;
+  static pick: typeof pick = pick;
 
   /**
    * 创建一个对象，只包含满足条件的属性
@@ -435,7 +435,7 @@ export class ObjectUtil {
    * ObjectUtil.pickBy(object, isNumber) // => { 'a': 1, 'c': 3 }
    * ```
    */
-  static pickBy = pickBy;
+  static pickBy: typeof pickBy = pickBy;
 
   /**
    * 获取对象路径上的值，如果解析值是函数则调用它
@@ -475,7 +475,7 @@ export class ObjectUtil {
    * @param customizer - 自定义处理程序
    * @returns 修改后的对象
    */
-  static setWith = setWith;
+  static setWith: typeof setWith = setWith;
 
   /**
    * 创建一个键值对数组
@@ -486,7 +486,7 @@ export class ObjectUtil {
    * ObjectUtil.toPairs({ 'a': 1, 'b': 2 }) // => [['a', 1], ['b', 2]]
    * ```
    */
-  static toPairs = toPairs;
+  static toPairs: typeof toPairs = toPairs;
 
   /**
    * 创建一个包含继承属性的键值对数组
@@ -499,7 +499,7 @@ export class ObjectUtil {
    * ObjectUtil.toPairsIn(new Foo) // => [['a', 1], ['b', 2]]
    * ```
    */
-  static toPairsIn = toPairsIn;
+  static toPairsIn: typeof toPairsIn = toPairsIn;
 
   /**
    * 转换对象为新对象
@@ -514,7 +514,7 @@ export class ObjectUtil {
    * }, {}) // => { 'a': 2, 'b': 4 }
    * ```
    */
-  static transform = transform;
+  static transform: typeof transform = transform;
 
   /**
    * 移除对象路径上的属性
@@ -553,7 +553,7 @@ export class ObjectUtil {
    * @param customizer - 自定义处理程序
    * @returns 修改后的对象
    */
-  static updateWith = updateWith;
+  static updateWith: typeof updateWith = updateWith;
 
   /**
    * 获取对象自身可枚举属性的值数组
@@ -564,7 +564,7 @@ export class ObjectUtil {
    * ObjectUtil.values({ 'a': 1, 'b': 2 }) // => [1, 2]
    * ```
    */
-  static values = values;
+  static values: typeof values = values;
 
   /**
    * 获取对象自身和继承的可枚举属性的值数组
@@ -577,7 +577,7 @@ export class ObjectUtil {
    * ObjectUtil.valuesIn(new Foo) // => [1, 2]
    * ```
    */
-  static valuesIn = valuesIn;
+  static valuesIn: typeof valuesIn = valuesIn;
 
   /**
    * 创建一个对象的浅克隆
@@ -611,7 +611,7 @@ export class ObjectUtil {
    * @param customizer - 自定义克隆函数
    * @returns 克隆后的值
    */
-  static cloneDeepWith = cloneDeepWith;
+  static cloneDeepWith: typeof cloneDeepWith = cloneDeepWith;
 
   /**
    * 类似于 clone，但支持自定义克隆函数
@@ -619,7 +619,7 @@ export class ObjectUtil {
    * @param customizer - 自定义克隆函数
    * @returns 克隆后的值
    */
-  static cloneWith = cloneWith;
+  static cloneWith: typeof cloneWith = cloneWith;
 
   /**
    * 检查对象是否符合源对象的属性值
@@ -627,7 +627,7 @@ export class ObjectUtil {
    * @param source - 包含属性谓词的对象
    * @returns 如果对象符合，返回 true，否则返回 false
    */
-  static conformsTo = conformsTo;
+  static conformsTo: typeof conformsTo = conformsTo;
 
   /**
    * 执行深比较来确定两个值是否相等
@@ -644,7 +644,7 @@ export class ObjectUtil {
    * @param customizer - 自定义比较函数
    * @returns 如果两个值相等，返回 true，否则返回 false
    */
-  static isEqualWith = isEqualWith;
+  static isEqualWith: typeof isEqualWith = isEqualWith;
 
   /**
    * 检查对象是否匹配源对象的属性值
@@ -661,7 +661,7 @@ export class ObjectUtil {
    * @param customizer - 自定义比较函数
    * @returns 如果对象匹配，返回 true，否则返回 false
    */
-  static isMatchWith = isMatchWith;
+  static isMatchWith: typeof isMatchWith = isMatchWith;
 
   /**
    * 检查值是否是普通对象
@@ -702,5 +702,5 @@ export class ObjectUtil {
    * ObjectUtil.isEmpty({}) // => true
    * ```
    */
-  static isEmpty = isEmpty;
+  static isEmpty: typeof isEmpty = isEmpty;
 }

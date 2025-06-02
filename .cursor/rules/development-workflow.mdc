@@ -1,0 +1,53 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 开发工作流指南
+
+## 项目管理
+这是一个使用 pnpm 管理的 monorepo 项目，使用 [pnpm-workspace.yaml](mdc:pnpm-workspace.yaml) 配置工作区。
+
+## 常用开发命令
+基于 [package.json](mdc:package.json) 中定义的脚本：
+
+### 开发模式
+```bash
+pnpm dev              # 构建并启动开发模式
+pnpm build:watch      # 监听模式构建核心包
+```
+
+### 示例项目开发
+```bash
+pnpm dev:react        # 启动 React 示例
+pnpm dev:vue          # 启动 Vue 示例  
+pnpm dev:taro:h5      # 启动 Taro H5 示例
+pnpm dev:taro:weapp   # 启动 Taro 微信小程序示例
+```
+
+### 构建和测试
+```bash
+pnpm build            # 构建核心包
+pnpm test             # 运行所有测试
+pnpm clean            # 清理构建产物
+pnpm clean:all        # 清理所有依赖和构建产物
+```
+
+### 发布
+```bash
+pnpm publish:jscommon      # 发布正式版本
+pnpm publish:jscommon:beta # 发布 beta 版本
+```
+
+## 核心包开发
+核心包位于 [packages/core/](mdc:packages/core)，包含：
+- [src/](mdc:packages/core/src) - 源代码目录
+- [vite.config.ts](mdc:packages/core/vite.config.ts) - Vite 构建配置
+- [vitest.config.ts](mdc:packages/core/vitest.config.ts) - 测试配置
+- [test/](mdc:packages/core/test) - 测试文件
+
+## 技术栈
+- TypeScript - 主要开发语言
+- Vite - 构建工具
+- Vitest - 测试框架
+- pnpm - 包管理器

@@ -1,4 +1,7 @@
-import 'animate.css';
+// 注意：使用此工具类前，请确保已在项目中引入 animate.css
+// 可以通过以下方式引入：
+// 1. npm install animate.css 然后在 CSS 中 @import 'animate.css'
+// 2. 或者在 HTML 中添加 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 /**
  * 动画效果类型

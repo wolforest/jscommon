@@ -1,0 +1,40 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# 代码结构指南
+
+## 核心包结构
+核心包位于 [packages/core/src/](mdc:packages/core/src)，按功能模块组织：
+
+### 模块分类
+- [storage/](mdc:packages/core/src/storage) - 存储相关工具
+- [debug/](mdc:packages/core/src/debug) - 调试工具
+- [style/](mdc:packages/core/src/style) - 样式处理工具
+- [lang/](mdc:packages/core/src/lang) - 语言处理工具
+- [net/](mdc:packages/core/src/net) - 网络请求工具
+- [index.ts](mdc:packages/core/src/index.ts) - 主入口文件
+
+## 示例项目结构
+[examples/](mdc:examples) 目录包含不同框架的使用示例：
+- [react-demo/](mdc:examples/react-demo) - React 框架示例
+- [vue-demo/](mdc:examples/vue-demo) - Vue 框架示例
+- [taro-demo/](mdc:examples/taro-demo) - Taro 多端框架示例
+
+## 代码组织原则
+1. **按功能模块分类** - 每个功能领域有独立的目录
+2. **统一导出** - 所有工具函数通过主入口文件统一导出
+3. **Tree-shaking 友好** - 支持按需导入，减少打包体积
+4. **TypeScript 优先** - 完整的类型定义和类型安全
+
+## 配置文件
+- [tsconfig.json](mdc:packages/core/tsconfig.json) - TypeScript 配置
+- [vite.config.ts](mdc:packages/core/vite.config.ts) - Vite 构建配置
+- [vitest.config.ts](mdc:packages/core/vitest.config.ts) - 测试配置
+- [vitest.config.ts](mdc:vitest.config.ts) - 根目录测试配置
+
+## 包管理
+- [package.json](mdc:packages/core/package.json) - 核心包配置
+- [pnpm-lock.yaml](mdc:pnpm-lock.yaml) - 依赖锁定文件
+- [.npmrc](mdc:.npmrc) - npm 配置

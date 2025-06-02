@@ -119,7 +119,7 @@ describe('StorageUtil', () => {
     it('should return correct storage length', async () => {
       (localforage.length as any).mockResolvedValue(5);
 
-      const result = await StorageUtil.length();
+      const result = await StorageUtil.getLength();
       
       expect(localforage.length).toHaveBeenCalled();
       expect(result).toBe(5);
@@ -128,7 +128,7 @@ describe('StorageUtil', () => {
     it('should return 0 when error occurs', async () => {
       (localforage.length as any).mockRejectedValue(new Error('Test error'));
 
-      const result = await StorageUtil.length();
+      const result = await StorageUtil.getLength();
       
       expect(result).toBe(0);
     });

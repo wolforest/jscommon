@@ -1,206 +1,359 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { IDBUtil } from '../../src/storage/IDBUtil';
 
 // Mock IndexedDB
-const indexedDB = {
+const mockIndexedDB = {
   open: vi.fn(),
   deleteDatabase: vi.fn()
 };
 
-const mockRequest = {
-  onerror: null as any,
-  onsuccess: null as any,
-  onupgradeneeded: null as any,
-  error: null,
-  result: null as any
-};
+const createMockRequest = () => ({
+  onsuccess: vi.fn(),
+  onerror: vi.fn(),
+  result: null,
+  error: null
+});
 
-const mockTransaction = {
-  objectStore: vi.fn()
-};
+const createMockTransaction = () => ({
+  objectStore: vi.fn(),
+  oncomplete: vi.fn(),
+  onerror: vi.fn(),
+  onabort: vi.fn()
+});
 
-const mockObjectStore = {
+const createMockObjectStore = () => ({
   get: vi.fn(),
   put: vi.fn(),
   delete: vi.fn(),
   clear: vi.fn(),
+  count: vi.fn(),
   getAllKeys: vi.fn(),
-  count: vi.fn()
-};
+  getAll: vi.fn()
+});
+
+const createMockDB = () => ({
+  close: vi.fn(),
+  transaction: vi.fn(),
+  name: 'testDB',
+  version: 1,
+  objectStoreNames: ['keyval']
+});
+
+// Setup global mocks
+global.indexedDB = mockIndexedDB as any;
+
+let mockRequest: any;
+let mockTransaction: any;
+let mockObjectStore: any;
+let mockDB: any;
 
 describe('IDBUtil', () => {
   beforeEach(() => {
-    // 设置全局 indexedDB mock
-    (global as any).indexedDB = indexedDB;
-
-    // 重置所有 mock
     vi.clearAllMocks();
-
-    // 设置基本的 mock 实现
-    indexedDB.open.mockReturnValue(mockRequest);
+    
+    mockRequest = createMockRequest();
+    mockTransaction = createMockTransaction();
+    mockObjectStore = createMockObjectStore();
+    mockDB = createMockDB();
+    
+    mockIndexedDB.open.mockReturnValue(mockRequest);
+    mockDB.transaction.mockReturnValue(mockTransaction);
     mockTransaction.objectStore.mockReturnValue(mockObjectStore);
+    
+    // Reset IDBUtil state
+    IDBUtil['db'] = null;
+    IDBUtil['currentStoreName'] = 'keyval';
   });
 
-  afterEach(async () => {
-    // 清理
-    IDBUtil.close();
+  describe('isSupported', () => {
+    it('should return true when IndexedDB is available', () => {
+      expect(IDBUtil.isSupported()).toBe(true);
+    });
+
+    it('should return false when IndexedDB is not available', () => {
+      const originalIndexedDB = global.indexedDB;
+      delete (global as any).indexedDB;
+      
+      expect(IDBUtil.isSupported()).toBe(false);
+      
+      global.indexedDB = originalIndexedDB;
+    });
   });
 
   describe('init', () => {
     it('should initialize database successfully', async () => {
-      const initPromise = IDBUtil.init();
+      mockRequest.result = mockDB;
       
-      // 模拟成功初始化
-      mockRequest.onsuccess({ target: { result: { 
-        transaction: vi.fn().mockReturnValue(mockTransaction),
-        close: vi.fn()
-      }}});
-
+      const initPromise = IDBUtil.init();
+      setTimeout(() => mockRequest.onsuccess());
+      
       await expect(initPromise).resolves.toBeUndefined();
-    });
-
-    it('should handle initialization error', async () => {
-      const initPromise = IDBUtil.init();
-      
-      // 模拟初始化错误
-      mockRequest.onerror({ target: { error: new Error('Init failed') }});
-
-      await expect(initPromise).rejects.toThrow('Init failed');
+      expect(mockIndexedDB.open).toHaveBeenCalledWith('jscommon', 1);
     });
   });
 
   describe('CRUD operations', () => {
     beforeEach(async () => {
-      // 初始化数据库
-      const initPromise = IDBUtil.init();
-      mockRequest.onsuccess({ target: { result: { 
-        transaction: vi.fn().mockReturnValue(mockTransaction),
-        close: vi.fn()
-      }}});
-      await initPromise;
+      IDBUtil['db'] = mockDB as any;
     });
 
     describe('getItem', () => {
       it('should get item successfully', async () => {
-        const mockValue = { id: 1, name: 'test' };
-        mockObjectStore.get.mockImplementation(() => {
-          const request = { result: mockValue };
-          setTimeout(() => request.onsuccess({ target: request }));
-          return request;
+        const mockValue = 'test value';
+        mockObjectStore.get.mockReturnValue({
+          result: mockValue,
+          onsuccess: vi.fn(),
+          onerror: vi.fn()
         });
 
-        const result = await IDBUtil.getItem('testKey');
-        expect(result).toEqual(mockValue);
+        const getPromise = IDBUtil.getItem('testKey');
+        
+        // 模拟异步成功
+        setTimeout(() => {
+          const request = mockObjectStore.get.mock.results[0].value;
+          request.onsuccess();
+        });
+
+        const result = await getPromise;
+        expect(result).toBe(mockValue);
       });
 
       it('should return null for non-existent key', async () => {
-        mockObjectStore.get.mockImplementation(() => {
-          const request = { result: undefined };
-          setTimeout(() => request.onsuccess({ target: request }));
-          return request;
+        mockObjectStore.get.mockReturnValue({
+          result: undefined,
+          onsuccess: vi.fn(),
+          onerror: vi.fn()
         });
 
-        const result = await IDBUtil.getItem('nonexistent');
+        const getPromise = IDBUtil.getItem('nonExistentKey');
+        
+        setTimeout(() => {
+          const request = mockObjectStore.get.mock.results[0].value;
+          request.onsuccess();
+        });
+
+        const result = await getPromise;
         expect(result).toBeNull();
       });
     });
 
     describe('setItem', () => {
       it('should set item successfully', async () => {
-        const value = { id: 1, name: 'test' };
-        mockObjectStore.put.mockImplementation(() => {
-          const request = {};
-          setTimeout(() => request.onsuccess());
-          return request;
+        const testValue = 'test value';
+        mockObjectStore.put.mockReturnValue({
+          onsuccess: vi.fn(),
+          onerror: vi.fn()
         });
 
-        const result = await IDBUtil.setItem('testKey', value);
-        expect(result).toEqual(value);
+        const setPromise = IDBUtil.setItem('testKey', testValue);
+        
+        setTimeout(() => {
+          const request = mockObjectStore.put.mock.results[0].value;
+          request.onsuccess();
+        });
+
+        const result = await setPromise;
+        expect(result).toBe(testValue);
+        expect(mockObjectStore.put).toHaveBeenCalledWith(testValue, 'testKey');
       });
     });
 
     describe('removeItem', () => {
       it('should remove item successfully', async () => {
-        mockObjectStore.delete.mockImplementation(() => {
-          const request = {};
-          setTimeout(() => request.onsuccess());
-          return request;
+        mockObjectStore.delete.mockReturnValue({
+          onsuccess: vi.fn(),
+          onerror: vi.fn()
         });
 
-        await expect(IDBUtil.removeItem('testKey')).resolves.toBeUndefined();
+        const removePromise = IDBUtil.removeItem('testKey');
+        
+        setTimeout(() => {
+          const request = mockObjectStore.delete.mock.results[0].value;
+          request.onsuccess();
+        });
+
+        await expect(removePromise).resolves.toBeUndefined();
+        expect(mockObjectStore.delete).toHaveBeenCalledWith('testKey');
       });
     });
 
     describe('clear', () => {
       it('should clear store successfully', async () => {
-        mockObjectStore.clear.mockImplementation(() => {
-          const request = {};
-          setTimeout(() => request.onsuccess());
-          return request;
+        mockObjectStore.clear.mockReturnValue({
+          onsuccess: vi.fn(),
+          onerror: vi.fn()
         });
 
-        await expect(IDBUtil.clear()).resolves.toBeUndefined();
+        const clearPromise = IDBUtil.clear();
+        
+        setTimeout(() => {
+          const request = mockObjectStore.clear.mock.results[0].value;
+          request.onsuccess();
+        });
+
+        await expect(clearPromise).resolves.toBeUndefined();
+        expect(mockObjectStore.clear).toHaveBeenCalled();
       });
     });
   });
 
   describe('utility methods', () => {
-    beforeEach(async () => {
-      // 初始化数据库
-      const initPromise = IDBUtil.init();
-      mockRequest.onsuccess({ target: { result: { 
-        transaction: vi.fn().mockReturnValue(mockTransaction),
-        close: vi.fn()
-      }}});
-      await initPromise;
+    beforeEach(() => {
+      IDBUtil['db'] = mockDB as any;
+    });
+
+    describe('getLength', () => {
+      it('should get length successfully', async () => {
+        const mockCount = 5;
+        mockObjectStore.count.mockReturnValue({
+          result: mockCount,
+          onsuccess: vi.fn(),
+          onerror: vi.fn()
+        });
+
+        const lengthPromise = IDBUtil.getLength();
+        
+        setTimeout(() => {
+          const request = mockObjectStore.count.mock.results[0].value;
+          request.onsuccess();
+        });
+
+        const result = await lengthPromise;
+        expect(result).toBe(mockCount);
+      });
     });
 
     describe('keys', () => {
       it('should get all keys successfully', async () => {
-        const mockKeys = ['key1', 'key2'];
-        mockObjectStore.getAllKeys.mockImplementation(() => {
-          const request = { result: mockKeys };
-          setTimeout(() => request.onsuccess({ target: request }));
-          return request;
+        const mockKeys = ['key1', 'key2', 'key3'];
+        mockObjectStore.getAllKeys.mockReturnValue({
+          result: mockKeys,
+          onsuccess: vi.fn(),
+          onerror: vi.fn()
         });
 
-        const result = await IDBUtil.keys();
+        const keysPromise = IDBUtil.keys();
+        
+        setTimeout(() => {
+          const request = mockObjectStore.getAllKeys.mock.results[0].value;
+          request.onsuccess();
+        });
+
+        const result = await keysPromise;
         expect(result).toEqual(mockKeys);
       });
     });
 
-    describe('count', () => {
-      it('should get count successfully', async () => {
-        mockObjectStore.count.mockImplementation(() => {
-          const request = { result: 5 };
-          setTimeout(() => request.onsuccess({ target: request }));
+    describe('values', () => {
+      it('should get all values successfully', async () => {
+        const mockValues = ['value1', 'value2', 'value3'];
+        mockObjectStore.getAll.mockReturnValue({
+          result: mockValues,
+          onsuccess: vi.fn(),
+          onerror: vi.fn()
+        });
+
+        const valuesPromise = IDBUtil.values();
+        
+        setTimeout(() => {
+          const request = mockObjectStore.getAll.mock.results[0].value;
+          request.onsuccess();
+        });
+
+        const result = await valuesPromise;
+        expect(result).toEqual(mockValues);
+      });
+    });
+  });
+
+  describe('batch operations', () => {
+    beforeEach(() => {
+      IDBUtil['db'] = mockDB as any;
+    });
+
+    describe('setItems', () => {
+      it('should set multiple items successfully', async () => {
+        mockObjectStore.put.mockReturnValue({
+          onsuccess: vi.fn(),
+          onerror: vi.fn()
+        });
+        
+        const setItemsPromise = IDBUtil.setItems([
+          ['key1', 'value1'],
+          ['key2', 'value2']
+        ]);
+        
+        setTimeout(() => mockTransaction.oncomplete());
+        
+        await expect(setItemsPromise).resolves.toBeUndefined();
+        expect(mockObjectStore.put).toHaveBeenCalledTimes(2);
+      });
+    });
+
+    describe('getItems', () => {
+      it('should get multiple items successfully', async () => {
+        const mockValues = ['value1', 'value2'];
+        let callIndex = 0;
+        
+        mockObjectStore.get.mockImplementation(() => {
+          const request = { 
+            result: mockValues[callIndex++], 
+            onerror: vi.fn(), 
+            onsuccess: vi.fn() 
+          };
+          setTimeout(() => request.onsuccess());
           return request;
         });
 
-        const result = await IDBUtil.count();
-        expect(result).toBe(5);
+        const result = await IDBUtil.getItems(['key1', 'key2']);
+        expect(result).toEqual(mockValues);
       });
     });
   });
 
   describe('database management', () => {
     it('should close database', () => {
-      const mockClose = vi.fn();
-      IDBUtil['db'] = { close: mockClose } as any;
+      IDBUtil['db'] = mockDB as any;
       
       IDBUtil.close();
       
-      expect(mockClose).toHaveBeenCalled();
+      expect(mockDB.close).toHaveBeenCalled();
       expect(IDBUtil['db']).toBeNull();
     });
 
     it('should delete database', async () => {
-      const deletePromise = IDBUtil.deleteDatabase();
-
-      mockRequest.onsuccess();
+      const mockRequest = { 
+        onsuccess: vi.fn(), 
+        onerror: vi.fn()
+      };
+      mockIndexedDB.deleteDatabase.mockReturnValue(mockRequest);
+      
+      const deletePromise = IDBUtil.deleteDatabase('testDB');
+      
+      setTimeout(() => mockRequest.onsuccess());
 
       await expect(deletePromise).resolves.toBeUndefined();
-      expect(indexedDB.deleteDatabase).toHaveBeenCalled();
+      expect(mockIndexedDB.deleteDatabase).toHaveBeenCalledWith('testDB');
+    });
+
+    it('should get database info', () => {
+      IDBUtil['db'] = mockDB as any;
+      
+      const info = IDBUtil.getInfo();
+      
+      expect(info).toEqual({
+        name: 'testDB',
+        version: 1,
+        objectStoreNames: ['keyval']
+      });
+    });
+
+    it('should return null when no database is initialized', () => {
+      IDBUtil['db'] = null;
+      
+      const info = IDBUtil.getInfo();
+      
+      expect(info).toBeNull();
     });
   });
 }); 

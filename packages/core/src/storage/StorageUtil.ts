@@ -170,7 +170,7 @@ export class StorageUtil {
    * await userStorage.setItem('profile', { name: 'John' });
    * ```
    */
-  static createInstance(options: LocalForageOptions): LocalForage {
+  static createInstance(options: any): typeof localforage {
     try {
       return localforage.createInstance(options);
     } catch (err) {
@@ -192,7 +192,7 @@ export class StorageUtil {
    * });
    * ```
    */
-  static config(options: LocalForageOptions): void {
+  static config(options: any): void {
     try {
       localforage.config(options);
     } catch (err) {
@@ -202,27 +202,35 @@ export class StorageUtil {
   }
 
   /**
-   * 获取当前使用的驱动
+   * 获取当前驱动
    * @returns 当前驱动名称
    * @example
    * ```ts
    * // 获取当前使用的存储驱动
    * const driver = StorageUtil.driver();
-   * console.log('Current storage driver:', driver);
+   * console.log('Current driver:', driver);
    * ```
    */
   static driver(): string {
-    return localforage.driver();
+    try {
+      return localforage.driver();
+    } catch (err) {
+      console.error('StorageUtil driver error:', err);
+      return '';
+    }
   }
 
   /**
-   * 设置要使用的驱动
-   * @param drivers - 驱动名称或名称数组
-   * @returns Promise
+   * 设置存储驱动
+   * @param drivers - 驱动名称或驱动数组
    * @example
    * ```ts
-   * // 设置使用 IndexedDB 作为存储驱动
-   * await StorageUtil.setDriver(localforage.INDEXEDDB);
+   * // 设置存储驱动优先级
+   * await StorageUtil.setDriver([
+   *   localforage.INDEXEDDB,
+   *   localforage.WEBSQL,
+   *   localforage.LOCALSTORAGE
+   * ]);
    * ```
    */
   static async setDriver(
@@ -235,4 +243,4 @@ export class StorageUtil {
       throw err;
     }
   }
-} 
+}

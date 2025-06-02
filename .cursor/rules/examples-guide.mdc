@@ -1,0 +1,87 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# 示例项目指南
+
+## 示例项目概览
+[examples/](mdc:examples) 目录包含了不同前端框架的使用示例，展示如何在实际项目中使用 `@wolforest/jscommon`。
+
+## 可用示例
+### React 示例
+- 位置：[react-demo/](mdc:examples/react-demo)
+- 启动命令：`pnpm dev:react`
+- 展示：React Hooks 的使用，如 `useRequest`、`useMount` 等
+
+### Vue 示例  
+- 位置：[vue-demo/](mdc:examples/vue-demo)
+- 启动命令：`pnpm dev:vue`
+- 展示：Vue Composables 的使用，如 `useLocalStorage`、`useMouse` 等
+
+### Taro 示例
+- 位置：[taro-demo/](mdc:examples/taro-demo)
+- H5 启动：`pnpm dev:taro:h5`
+- 微信小程序启动：`pnpm dev:taro:weapp`
+- 展示：多端开发中的工具函数使用
+
+## 示例开发流程
+1. **构建核心包**：示例项目依赖核心包，需要先构建
+   ```bash
+   pnpm build
+   ```
+
+2. **启动示例**：选择对应的示例项目启动
+   ```bash
+   pnpm dev:react    # React 示例
+   pnpm dev:vue      # Vue 示例
+   pnpm dev:taro:h5  # Taro H5 示例
+   ```
+
+3. **监听开发**：如需同时开发核心包，可以使用监听模式
+   ```bash
+   pnpm build:watch  # 监听核心包变化并自动构建
+   ```
+
+## 示例内容
+每个示例项目都应该包含以下内容：
+
+### 基础工具函数演示
+```typescript
+// Lodash 工具函数
+import { isEmpty, get, merge } from '@wolforest/jscommon';
+
+// 日期处理
+import { format, year } from '@wolforest/jscommon';
+
+// 网络请求
+import { request } from '@wolforest/jscommon';
+
+// URL 参数处理
+import { qs, queryString } from '@wolforest/jscommon';
+
+// 中文拼音
+import { pinyin } from '@wolforest/jscommon';
+
+// 精确数学计算
+import { Big } from '@wolforest/jscommon';
+
+// CSS 类名处理
+import { classNames } from '@wolforest/jscommon';
+```
+
+### 框架特定功能
+- **React**：展示 ahooks 中的各种 Hooks
+- **Vue**：展示 @vueuse/core 中的 Composables
+- **Taro**：展示跨端开发中的工具函数使用
+
+## 添加新示例
+1. 在 [examples/](mdc:examples) 目录下创建新的示例项目
+2. 在根目录 [package.json](mdc:package.json) 中添加对应的启动脚本
+3. 确保示例项目正确引用 `@wolforest/jscommon`
+4. 添加详细的使用说明和注释
+
+## 注意事项
+- 示例项目主要用于演示和测试，不是生产环境代码
+- 每次修改核心包后，需要重新构建才能在示例中看到效果
+- 示例项目应该保持简洁，重点展示工具库的使用方法

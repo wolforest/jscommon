@@ -1,6 +1,6 @@
 {
   "name": "@wolforest/jscommon",
-  "version": "0.0.1-beta.2",
+  "version": "0.0.1",
   "description": "Frontend utility library facade",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
@@ -9,9 +9,10 @@
   "jsdelivr": "./dist/index.umd.cjs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wolforest/jscommon.git"
+    "url": "https://github.com/wolforest/jscommon",
+    "branch": "main"
   },
-  "homepage": "https://github.com/wolforest/jscommon#readme",
+  "homepage": "https://github.com/wolforest/jscommon",
   "bugs": {
     "url": "https://github.com/wolforest/jscommon/issues"
   },

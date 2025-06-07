@@ -11,27 +11,32 @@
 
 这导致发布到 npm 的包版本和 Git tag 版本不匹配。
 
-**修复方案**：
-重新设计发布流程，确保版本号一致性：
+**进一步发现的问题**：
+在修复过程中发现，升级版本后如果不立即提交，pnpm publish 会因为工作区不干净而失败。
+
+**最终修复方案**：
+重新设计发布流程，确保版本号一致性和工作区干净：
 
 ```json
 {
   "scripts": {
-    "publish:jscommon": "npm run version:patch && pnpm build && pnpm --filter @wolforest/jscommon publish --access public && npm run tag:latest",
-    "publish:jscommon:beta": "pnpm build && pnpm --filter @wolforest/jscommon publish --tag beta && npm run tag:beta",
+    "publish:jscommon": "npm run version:patch && npm run commit:version && pnpm build && pnpm --filter @wolforest/jscommon publish --access public && npm run tag:latest",
+    "publish:jscommon:beta": "npm run version:beta && npm run commit:version && pnpm build && pnpm --filter @wolforest/jscommon publish --tag beta && npm run tag:beta",
     "version:patch": "cd packages/core && npm version patch --no-git-tag-version",
     "version:beta": "cd packages/core && npm version prerelease --preid=beta --no-git-tag-version",
-    "tag:latest": "cd packages/core && git add . && git commit -m \"chore: release v$(node -p \"require('./package.json').version\")\" && git tag v$(node -p \"require('./package.json').version\") && git push && git push --tags",
-    "tag:beta": "cd packages/core && git add . && git commit -m \"chore: release beta v$(node -p \"require('./package.json').version\")\" && git tag v$(node -p \"require('./package.json').version\")-beta && git push && git push --tags"
+    "commit:version": "git add packages/core/package.json && git commit -m \"chore: bump version to $(cd packages/core && node -p \"require('./package.json').version\")\"",
+    "tag:latest": "cd packages/core && git tag v$(node -p \"require('./package.json').version\") && git push && git push --tags",
+    "tag:beta": "cd packages/core && git tag v$(node -p \"require('./package.json').version\")-beta && git push && git push --tags"
   }
 }
 ```
 
 **新的发布流程**：
 1. `version:patch` - 先升级版本号
-2. `pnpm build` - 构建包
-3. `pnpm publish` - 发布包（使用新版本号）
-4. `tag:latest` - 创建对应的 Git tag
+2. `commit:version` - 提交版本更改，确保工作区干净
+3. `pnpm build` - 构建包
+4. `pnpm publish` - 发布包（使用新版本号）
+5. `tag:latest` - 创建对应的 Git tag 并推送
 
 ### 2. React 示例硬编码版本问题
 
@@ -153,4 +158,4 @@ npm run version:beta
 ---
 
 *修复时间: 2024年12月8日*
-*当前版本: 0.0.2* 
+*当前版本: 0.0.4* 

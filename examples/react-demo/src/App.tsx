@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   // Lang 模块
   ArrayUtil, DateUtil, NumberUtil, StringUtil, BooleanUtil, 
@@ -33,13 +33,13 @@ interface PackageInfo {
 
 function App() {
   const [results, setResults] = useState<TestResult[]>([]);
-  const [packageInfo, setPackageInfo] = useState<PackageInfo>({
-    version: '0.0.1-beta.1',
+  const packageInfo: PackageInfo = {
+    version: __JSCOMMON_VERSION__,
     bundleSize: '484KB',
     gzipSize: '136KB',
     modules: 21,
     totalMethods: 409
-  });
+  };
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [showCode, setShowCode] = useState<{ [key: string]: boolean }>({});
 

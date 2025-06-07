@@ -30,8 +30,8 @@ importers:
   examples/react-demo:
     dependencies:
       '@wolforest/jscommon':
-        specifier: workspace:*
-        version: link:../../packages/core
+        specifier: ^0.0.5
+        version: 0.0.5
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -2654,6 +2654,9 @@ packages:
 
   '@webassemblyjs/wast-printer@1.11.1':
     resolution: {integrity: sha512-IQboUWM4eKzWW+N/jij2sRatKMh99QEelo3Eb2q0qXkvPRISAj8Qxtmw5itwqK+TTkBuUIE45AxYPToqPtL5gg==}
+
+  '@wolforest/jscommon@0.0.5':
+    resolution: {integrity: sha512-2M1a/Of+Pz/fiUQRoiqwDMbGV8AezwWtBVrTHWfaJOeEW3vhllyl6GEZ7nXvVqTatCERzu60T+8ZnvdieRG1ow==}
 
   '@xtuc/ieee754@1.2.0':
     resolution: {integrity: sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA==}
@@ -11502,6 +11505,21 @@ snapshots:
     dependencies:
       '@webassemblyjs/ast': 1.11.1
       '@xtuc/long': 4.2.2
+
+  '@wolforest/jscommon@0.0.5':
+    dependencies:
+      '@types/js-cookie': 3.0.6
+      animate.css: 4.1.1
+      big.js: 6.2.2
+      classnames: 2.5.1
+      dayjs: 1.11.13
+      js-cookie: 3.0.5
+      localforage: 1.10.0
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      qs: 6.13.1
+      validator: 13.12.0
+      vconsole: 3.15.1
 
   '@xtuc/ieee754@1.2.0': {}
 

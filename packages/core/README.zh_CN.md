@@ -9,7 +9,7 @@ JavaScript/TypeScript 的简单工具集合，为前端应用提供你所需要�
 
 简体中文 | [English](./README.md)
 
-![](/design.png)
+![Design](https://raw.githubusercontent.com/wolforest/jscommon/main/design.png)
 
 ## ✨ 特性
 
@@ -368,4 +368,4 @@ const firstUser = ArrayUtil.first(users); // User | undefined
 
 请关注我们的公众号，《jscommon实践》的内容我们后期会周更到公众号上：
 
-![](https://github.com/wolforest/jscommon/blob/main/qr_code_for_team.png)
+![QR Code](https://raw.githubusercontent.com/wolforest/jscommon/main/qr_code_for_team.png)

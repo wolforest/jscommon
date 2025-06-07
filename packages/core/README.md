@@ -9,7 +9,7 @@ A simple collection of JavaScript/TypeScript utilities that provides all the uti
 
 English | [简体中文](./README.zh_CN.md)
 
-![](/design_en.png)
+![Design](https://raw.githubusercontent.com/wolforest/jscommon/main/design_en.png)
 
 ## ✨ Features
 
@@ -324,7 +324,7 @@ const firstUser = ArrayUtil.first(users); // User | undefined
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](https://github.com/wolforest/jscommon/blob/main/CONTRIBUTING.md).
+We welcome contributions! Please see our [Contributing Guide](https://github.com/wolforest/jscommon/blob/main/CONTRIBUTING.en.md).
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)

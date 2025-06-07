@@ -39,7 +39,7 @@ export class CollectionUtil {
    * CollectionUtil.countBy(['one', 'two', 'three'], 'length') // => { '3': 2, '5': 1 }
    * ```
    */
-  static countBy = countBy;
+  static countBy: typeof countBy = countBy;
 
   /**
    * 遍历集合中的元素
@@ -52,7 +52,7 @@ export class CollectionUtil {
    * // => 输出 1 然后是 2
    * ```
    */
-  static forEach = forEach;
+  static forEach: typeof forEach = forEach;
 
   /**
    * 从右到左遍历集合中的元素
@@ -65,7 +65,7 @@ export class CollectionUtil {
    * // => 输出 2 然后是 1
    * ```
    */
-  static forEachRight = forEachRight;
+  static forEachRight: typeof forEachRight = forEachRight;
 
   /**
    * 检查集合中的所有元素是否都通过检查
@@ -77,7 +77,7 @@ export class CollectionUtil {
    * CollectionUtil.every([true, 1, null, 'yes'], Boolean) // => false
    * ```
    */
-  static every = every;
+  static every: typeof every = every;
 
   /**
    * 遍历集合中的元素，返回所有通过检查的元素
@@ -93,7 +93,7 @@ export class CollectionUtil {
    * CollectionUtil.filter(users, o => !o.active) // => [{ 'user': 'fred', 'age': 40, 'active': false }]
    * ```
    */
-  static filter = filter;
+  static filter: typeof filter = filter;
 
   /**
    * 遍历集合中的元素，返回第一个通过检查的元素
@@ -111,7 +111,7 @@ export class CollectionUtil {
    * CollectionUtil.find(users, o => o.age < 40) // => { 'user': 'barney', 'age': 36, 'active': true }
    * ```
    */
-  static find = find;
+  static find: typeof find = find;
 
   /**
    * 类似于 find，但是从右到左遍历集合
@@ -124,7 +124,7 @@ export class CollectionUtil {
    * CollectionUtil.findLast([1, 2, 3, 4], n => n % 2 === 1) // => 3
    * ```
    */
-  static findLast = findLast;
+  static findLast: typeof findLast = findLast;
 
   /**
    * 创建一个扁平化的数组，每个元素会传入迭代函数，返回的结果会与值合并
@@ -139,7 +139,7 @@ export class CollectionUtil {
    * CollectionUtil.flatMap([1, 2], duplicate) // => [1, 1, 2, 2]
    * ```
    */
-  static flatMap = flatMap;
+  static flatMap: typeof flatMap = flatMap;
 
   /**
    * 类似于 flatMap，但会递归扁平化所有嵌套数组
@@ -154,7 +154,7 @@ export class CollectionUtil {
    * CollectionUtil.flatMapDeep([1, 2], duplicate) // => [1, 1, 2, 2]
    * ```
    */
-  static flatMapDeep = flatMapDeep;
+  static flatMapDeep: typeof flatMapDeep = flatMapDeep;
 
   /**
    * 类似于 flatMap，可以指定扁平化的深度
@@ -170,7 +170,7 @@ export class CollectionUtil {
    * CollectionUtil.flatMapDepth([1, 2], duplicate, 2) // => [[1, 1], [2, 2]]
    * ```
    */
-  static flatMapDepth = flatMapDepth;
+  static flatMapDepth: typeof flatMapDepth = flatMapDepth;
 
   /**
    * 创建一个对象，key 是迭代函数返回的结果，value 是原始元素组成的数组
@@ -182,7 +182,7 @@ export class CollectionUtil {
    * CollectionUtil.groupBy([6.1, 4.2, 6.3], Math.floor) // => { '4': [4.2], '6': [6.1, 6.3] }
    * ```
    */
-  static groupBy = groupBy;
+  static groupBy: typeof groupBy = groupBy;
 
   /**
    * 检查值是否在集合中
@@ -196,7 +196,7 @@ export class CollectionUtil {
    * CollectionUtil.includes([1, 2, 3], 1, 2) // => false
    * ```
    */
-  static includes = includes;
+  static includes: typeof includes = includes;
 
   /**
    * 调用集合中每个元素的方法
@@ -210,7 +210,7 @@ export class CollectionUtil {
    * // => [[1, 5, 7], [1, 2, 3]]
    * ```
    */
-  static invokeMap = invokeMap;
+  static invokeMap: typeof invokeMap = invokeMap;
 
   /**
    * 创建一个对象，key 是迭代函数返回的结果，value 是集合中对应的元素
@@ -226,7 +226,7 @@ export class CollectionUtil {
    * CollectionUtil.keyBy(array, 'dir') // => { 'left': { 'dir': 'left', 'code': 97 }, 'right': { 'dir': 'right', 'code': 100 } }
    * ```
    */
-  static keyBy = keyBy;
+  static keyBy: typeof keyBy = keyBy;
 
   /**
    * 创建一个数组，值是迭代函数处理的结果
@@ -241,7 +241,7 @@ export class CollectionUtil {
    * CollectionUtil.map([4, 8], square) // => [16, 64]
    * ```
    */
-  static map = map;
+  static map: typeof map = map;
 
   /**
    * 创建一个元素数组，以指定的条件进行排序
@@ -262,7 +262,7 @@ export class CollectionUtil {
    * //     { 'user': 'fred',   'age': 48 }, { 'user': 'fred',   'age': 40 }]
    * ```
    */
-  static orderBy = orderBy;
+  static orderBy: typeof orderBy = orderBy;
 
   /**
    * 创建一个分成两组的元素数组，第一组包含所有满足条件的元素，第二组包含所有不满足条件的元素
@@ -282,7 +282,7 @@ export class CollectionUtil {
    * //      { 'user': 'pebbles', 'age': 1, 'active': false }]]
    * ```
    */
-  static partition = partition;
+  static partition: typeof partition = partition;
 
   /**
    * 归并集合中的元素
@@ -295,7 +295,7 @@ export class CollectionUtil {
    * CollectionUtil.reduce([1, 2], (sum, n) => sum + n, 0) // => 3
    * ```
    */
-  static reduce = reduce;
+  static reduce: typeof reduce = reduce;
 
   /**
    * 从右到左归并集合中的元素
@@ -310,7 +310,7 @@ export class CollectionUtil {
    * // => [4, 5, 2, 3, 0, 1]
    * ```
    */
-  static reduceRight = reduceRight;
+  static reduceRight: typeof reduceRight = reduceRight;
 
   /**
    * 返回所有不满足条件的元素
@@ -327,7 +327,7 @@ export class CollectionUtil {
    * // => [{ 'user': 'fred', 'age': 40, 'active': true }]
    * ```
    */
-  static reject = reject;
+  static reject: typeof reject = reject;
 
   /**
    * 从集合中随机获取一个元素
@@ -338,7 +338,7 @@ export class CollectionUtil {
    * CollectionUtil.sample([1, 2, 3, 4]) // => 2
    * ```
    */
-  static sample = sample;
+  static sample: typeof sample = sample;
 
   /**
    * 从集合中获取 n 个随机元素
@@ -350,7 +350,7 @@ export class CollectionUtil {
    * CollectionUtil.sampleSize([1, 2, 3], 2) // => [3, 1]
    * ```
    */
-  static sampleSize = sampleSize;
+  static sampleSize: typeof sampleSize = sampleSize;
 
   /**
    * 创建一个打乱的数组
@@ -361,7 +361,7 @@ export class CollectionUtil {
    * CollectionUtil.shuffle([1, 2, 3, 4]) // => [4, 1, 3, 2]
    * ```
    */
-  static shuffle = shuffle;
+  static shuffle: typeof shuffle = shuffle;
 
   /**
    * 获取集合的长度
@@ -373,7 +373,7 @@ export class CollectionUtil {
    * CollectionUtil.size({ 'a': 1, 'b': 2 }) // => 2
    * ```
    */
-  static size = size;
+  static size: typeof size = size;
 
   /**
    * 检查集合中是否存在满足条件的元素
@@ -390,7 +390,7 @@ export class CollectionUtil {
    * CollectionUtil.some(users, { 'user': 'barney', 'active': false }) // => false
    * ```
    */
-  static some = some;
+  static some: typeof some = some;
 
   /**
    * 创建一个元素数组，以指定的条件进行排序
@@ -410,5 +410,5 @@ export class CollectionUtil {
    * //     { 'user': 'fred',   'age': 48 }, { 'user': 'fred',   'age': 40 }]
    * ```
    */
-  static sortBy = sortBy;
+  static sortBy: typeof sortBy = sortBy;
 }

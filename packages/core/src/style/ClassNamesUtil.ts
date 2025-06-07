@@ -58,17 +58,26 @@ export class ClassNamesUtil {
     // 如果结果包含数字，需要保持原始顺序
     if (result && args.some(arg => typeof arg === 'number')) {
       const parts = result.split(' ');
-      const reordered = args.reduce((acc: string[], arg) => {
+      const reordered: string[] = [];
+      
+      args.forEach(arg => {
         if (typeof arg === 'number') {
           const numStr = String(arg);
-          if (parts.includes(numStr)) {
-            acc.push(numStr);
+          if (parts.includes(numStr) && !reordered.includes(numStr)) {
+            reordered.push(numStr);
           }
-        } else if (typeof arg === 'string' && parts.includes(arg)) {
-          acc.push(arg);
+        } else if (typeof arg === 'string' && parts.includes(arg) && !reordered.includes(arg)) {
+          reordered.push(arg);
         }
-        return acc;
-      }, []);
+      });
+      
+      // 添加剩余的类名
+      parts.forEach(part => {
+        if (!reordered.includes(part)) {
+          reordered.push(part);
+        }
+      });
+      
       return reordered.join(' ');
     }
 

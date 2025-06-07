@@ -224,7 +224,7 @@ export class StringUtil {
    * StringUtil.replace('Hi Fred', 'Fred', 'Barney') // => 'Hi Barney'
    * ```
    */
-  static replace = replace;
+  static replace: typeof replace = replace;
 
   /**
    * 转换字符串为下划线分隔写法
@@ -289,7 +289,7 @@ export class StringUtil {
    * compiled({ 'user': 'fred' }) // => 'hello fred!'
    * ```
    */
-  static template = template;
+  static template: typeof template = template;
 
   /**
    * 转换字符串为小写
@@ -361,7 +361,7 @@ export class StringUtil {
    * // => 'hi-diddly-ho there, neighbo...'
    * ```
    */
-  static truncate = truncate;
+  static truncate: typeof truncate = truncate;
 
   /**
    * 反转义 HTML 实体字符

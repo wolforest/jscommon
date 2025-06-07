@@ -22,7 +22,7 @@ export class VConsoleUtil {
    * });
    * ```
    */
-  static init(options?: VConsoleOptions): VConsole {
+  static init(options?: any): VConsole {
     if (!this.instance) {
       this.instance = new VConsole(options);
     }

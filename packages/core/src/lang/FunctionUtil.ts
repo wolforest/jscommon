@@ -84,7 +84,7 @@ export class FunctionUtil {
    * bound('barney') // => 'hi fred barney'
    * ```
    */
-  static bind = bind;
+  static bind: typeof bind = bind;
 
   /**
    * 创建一个绑定了对象方法的函数
@@ -104,7 +104,7 @@ export class FunctionUtil {
    * bound('barney') // => 'hi fred barney'
    * ```
    */
-  static bindKey = bindKey;
+  static bindKey: typeof bindKey = bindKey;
 
   /**
    * 创建一个柯里化的函数
@@ -118,7 +118,7 @@ export class FunctionUtil {
    * curried('a')('b')('c') // => ['a', 'b', 'c']
    * ```
    */
-  static curry = curry;
+  static curry: typeof curry = curry;
 
   /**
    * 创建一个从右到左柯里化的函数
@@ -132,7 +132,7 @@ export class FunctionUtil {
    * curriedRight('c')('b')('a') // => ['a', 'b', 'c']
    * ```
    */
-  static curryRight = curryRight;
+  static curryRight: typeof curryRight = curryRight;
 
   /**
    * 创建一个防抖动函数，在最后一次调用后延迟执行
@@ -148,7 +148,7 @@ export class FunctionUtil {
    * // => 只有最后一次调用会延迟 300ms 后执行
    * ```
    */
-  static debounce = debounce;
+  static debounce: typeof debounce = debounce;
 
   /**
    * 延迟执行函数
@@ -203,7 +203,7 @@ export class FunctionUtil {
    * memoized(1, 2) // => 从缓存中获取结果
    * ```
    */
-  static memoize = memoize;
+  static memoize: typeof memoize = memoize;
 
   /**
    * 创建一个取反函数
@@ -245,7 +245,7 @@ export class FunctionUtil {
    * overArgs(1, 2) // => [2, 4]
    * ```
    */
-  static overArgs = overArgs;
+  static overArgs: typeof overArgs = overArgs;
 
   /**
    * 创建一个部分应用的函数
@@ -259,7 +259,7 @@ export class FunctionUtil {
    * sayHello('world') // => 'hello world'
    * ```
    */
-  static partial = partial;
+  static partial: typeof partial = partial;
 
   /**
    * 创建一个从右到左部分应用的函数
@@ -273,7 +273,7 @@ export class FunctionUtil {
    * greetWorld('hello') // => 'hello world'
    * ```
    */
-  static partialRight = partialRight;
+  static partialRight: typeof partialRight = partialRight;
 
   /**
    * 创建一个重新排列参数的函数
@@ -286,7 +286,7 @@ export class FunctionUtil {
    * rearg('a', 'b', 'c') // => ['c', 'a', 'b']
    * ```
    */
-  static rearg = rearg;
+  static rearg: typeof rearg = rearg;
 
   /**
    * 创建一个接受剩余参数的函数
@@ -328,7 +328,7 @@ export class FunctionUtil {
    * // => 每 300ms 最多执行一次
    * ```
    */
-  static throttle = throttle;
+  static throttle: typeof throttle = throttle;
 
   /**
    * 创建一个只接受一个参数的函数

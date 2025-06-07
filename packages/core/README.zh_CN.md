@@ -368,4 +368,4 @@ const firstUser = ArrayUtil.first(users); // User | undefined
 
 请关注我们的公众号，《jscommon实践》的内容我们后期会周更到公众号上：
 
-![](/qr_code_for_team.png)
+![](https://github.com/wolforest/jscommon/blob/main/qr_code_for_team.png)

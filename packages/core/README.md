@@ -5,7 +5,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![Tree Shaking](https://img.shields.io/badge/Tree%20Shaking-Supported-green.svg)](https://webpack.js.org/guides/tree-shaking/)
 
-A simple collection of JavaScript/TypeScript utilities that provides all the utility functions you need for frontend applications, with full Tree-shaking support.
+A simple collection of JavaScript/TypeScript utilities that provides all the utility functions you need for frontend applications, with half-full Tree-shaking support.
 
 English | [简体中文](./README.zh_CN.md)
 

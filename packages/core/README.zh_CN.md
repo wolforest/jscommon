@@ -5,7 +5,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![Tree Shaking](https://img.shields.io/badge/Tree%20Shaking-Supported-green.svg)](https://webpack.js.org/guides/tree-shaking/)
 
-JavaScript/TypeScript 的简单工具集合，为前端应用提供你所需要的全部工具函数，支持完整的 Tree-shaking。
+JavaScript/TypeScript 的简单工具集合，为前端应用提供你所需要的全部工具函数，支持粗颗粒度的 Tree-shaking。
 
 简体中文 | [English](./README.md)
 
@@ -13,12 +13,12 @@ JavaScript/TypeScript 的简单工具集合，为前端应用提供你所需要�
 
 ## ✨ 特性
 
-- 📦 **Tree-shaking 友好** - 支持按需导入，减少打包体积
-- 🔧 **TypeScript 优先** - 完整的类型定义和类型安全
-- 🎯 **模块化设计** - 按功能领域组织，易于使用和维护
-- 🚀 **零配置** - 开箱即用，无需额外配置
-- 📚 **完整文档** - 详细的 API 文档和使用示例
-- 🧪 **测试覆盖** - 完整的单元测试保证代码质量
+✅ 🔧 **TypeScript 优先** - 完整的类型定义和类型安全
+✅ 🎯 **模块化设计** - 按功能领域组织，易于使用和维护
+✅ 🚀 **零配置** - 开箱即用，无需额外配置
+✅ 📚 **完整文档** - 详细的 API 文档和使用示例
+✅ 🧪 **测试覆盖** - 完整的单元测试保证代码质量
+☑️ 📦 **Tree-shaking 友好** - 支持粗颗粒度的按需导入，减少打包体积
 
 ## 📦 安装
 

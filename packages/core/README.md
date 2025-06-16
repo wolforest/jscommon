@@ -13,12 +13,17 @@ English | [简体中文](./README.zh_CN.md)
 
 ## ✨ Features
 
-- 📦 **Tree-shaking Friendly** - Support on-demand imports to reduce bundle size
-- 🔧 **TypeScript First** - Complete type definitions and type safety
-- 🎯 **Modular Design** - Organized by functional domains, easy to use and maintain
-- 🚀 **Zero Configuration** - Works out of the box, no additional configuration needed
-- 📚 **Complete Documentation** - Detailed API documentation and usage examples
-- 🧪 **Test Coverage** - Complete unit tests ensure code quality
+✅ 🔧 **TypeScript First** - Complete type definitions and type safety
+
+✅ 🎯 **Modular Design** - Organized by functional domains, easy to use and maintain
+
+✅ 🚀 **Zero Configuration** - Works out of the box, no additional configuration needed
+
+✅ 📚 **Complete Documentation** - Detailed API documentation and usage examples
+
+✅ 🧪 **Test Coverage** - Complete unit tests ensure code quality
+
+☑️ 📦 **Tree-shaking Friendly** - Support on-demand imports to reduce bundle size
 
 ## 📦 Installation
 
